@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Bag – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='cart.html'" style="position:relative">🛒<span class="cart-dot" id="cartBadge">0</span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <span class="petal" style="left:8%;animation-duration:12s;animation-delay:0s">🌸</span>
+        <span class="petal" style="left:20%;animation-duration:16s;animation-delay:3s">🌷</span>
+        <span class="petal" style="left:75%;animation-duration:14s;animation-delay:5s">✿</span>
+        <span class="petal" style="left:88%;animation-duration:18s;animation-delay:2s">🌺</span>
+        <h1>Your <em>Bag</em> 🛒</h1>
+        <p>review your picks, darling 💕</p>
+    </section>
+
+    <!-- CART BODY -->
+    <section class="cart-section">
+
+        <!-- EMPTY STATE -->
+        <div class="empty-bag" id="emptyBag" style="display:none">
+            <div class="empty-ico">🛒</div>
+            <h2>Your bag is empty</h2>
+            <p>Looks like you haven't added anything yet, darling 💕</p>
+            <a href="index.html" class="btn-rose">Start Shopping 💄</a>
+        </div>
+
+        <!-- CART CONTENT -->
+        <div class="cart-layout" id="cartLayout">
+
+            <!-- ITEMS -->
+            <div class="cart-items" id="cartItems"></div>
+
+            <!-- SUMMARY -->
+            <div class="cart-summary reveal">
+                <div class="summary-title">Order Summary</div>
+
+                <div class="summary-rows" id="summaryRows">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotalVal">EGP 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shippingVal" class="green">Free 🎁</span>
+                    </div>
+                    <div class="summary-row promo-row">
+                        <span>Promo Code</span>
+                        <div class="promo-input-wrap">
+                            <input type="text" id="promoInput" placeholder="GLOWUP10" />
+                            <button onclick="applyPromo()">Apply</button>
+                        </div>
+                    </div>
+                    <div class="summary-row" id="discountRow" style="display:none">
+                        <span>Discount</span>
+                        <span id="discountVal" class="rose">-EGP 0.00</span>
+                    </div>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="totalVal">EGP 0.00</span>
+                </div>
+
+                <button class="btn-checkout" onclick="checkout()">
+                    Proceed to Checkout 💳
+                </button>
+
+                <a href="index.html" class="btn-continue">← Continue Shopping</a>
+
+                <div class="trust-badges">
+                    <div class="trust-b"><span>🔒</span> Secure Checkout</div>
+                    <div class="trust-b"><span>🌿</span> Vegan & Clean</div>
+                    <div class="trust-b"><span>💌</span> Free Shipping +75 EGP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKOUT MODAL — now handled in checkout.html -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-card">
+            <div class="modal-ico">🌸</div>
+            <h2 class="modal-title">Order Placed!</h2>
+            <p class="modal-sub">Thank you, darling! Your order is on its way.<br />We'll send you a confirmation soon 💕</p>
+            <button class="btn-rose" onclick="closeModal()" style="margin-top:24px">Continue Shopping 💄</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div class="foot-logo">Glow Up</div>
+                <p class="foot-p">Premium beauty for every woman. Clean formulas, gorgeous packaging, and products that actually work. 💕</p>
+                <div class="foot-socials">
+                    <a href="#" class="fsoc"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Shop</div>
+                <ul>
+                    <li><a href="Makeup.html">Makeup</a></li>
+                    <li><a href="Skincare_.html">Skincare</a></li>
+                    <li><a href="index.html">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Help</div>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">About</div>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 Glow Up Beauty. Made with 💕 Nour Mohammed</p>
+            <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </footer>
+
+    <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        /* ── CART ENGINE ──────────────────────────────── */
+        function getCart() {
+            try { return JSON.parse(localStorage.getItem('glowup_cart')) || []; }
+            catch { return []; }
+        }
+        function saveCart(cart) {
+            localStorage.setItem('glowup_cart', JSON.stringify(cart));
+        }
+        function updateBadge() {
+            const cart = getCart();
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            document.getElementById('cartBadge').textContent = total;
+        }
+
+        /* ── RENDER ───────────────────────────────────── */
+        function renderCart() {
+            const cart = getCart();
+            const emptyBag = document.getElementById('emptyBag');
+            const cartLayout = document.getElementById('cartLayout');
+
+            if (!cart.length) {
+                emptyBag.style.display = 'flex';
+                cartLayout.style.display = 'none';
+                return;
+            }
+
+            emptyBag.style.display = 'none';
+            cartLayout.style.display = 'grid';
+
+            const itemsEl = document.getElementById('cartItems');
+            itemsEl.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item reveal" id="item-${idx}">
+                    <div class="item-img">
+                        <img src="${item.img}" alt="${item.name}" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-cat">${item.cat || 'Glow Up'}</div>
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">EGP ${item.price}.00</div>
+                    </div>
+                    <div class="item-qty">
+                        <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+                        <span class="qty-num">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                    </div>
+                    <div class="item-subtotal">EGP ${(item.price * item.qty).toFixed(2)}</div>
+                    <button class="item-remove" onclick="removeItem(${idx})" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            updateSummary();
+            updateBadge();
+
+            // reveal animation
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+            }, 50);
+        }
+
+        function updateSummary() {
+            const cart = getCart();
+            const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const shipping = subtotal >= 75 ? 0 : 30;
+            const discount = currentDiscount ? Math.round(subtotal * currentDiscount) : 0;
+            const total = subtotal - discount + shipping;
+
+            document.getElementById('subtotalVal').textContent = `EGP ${subtotal.toFixed(2)}`;
+            document.getElementById('shippingVal').textContent = shipping === 0 ? 'Free 🎁' : `EGP ${shipping}.00`;
+            document.getElementById('shippingVal').className = shipping === 0 ? 'green' : '';
+            document.getElementById('totalVal').textContent = `EGP ${total.toFixed(2)}`;
+
+            if (discount > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountVal').textContent = `-EGP ${discount.toFixed(2)}`;
+            }
+        }
+
+        /* ── ACTIONS ──────────────────────────────────── */
+        function changeQty(idx, delta) {
+            const cart = getCart();
+            cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+            saveCart(cart);
+            renderCart();
+        }
+
+        function removeItem(idx) {
+            const cart = getCart();
+            const el = document.getElementById('item-' + idx);
+            if (el) { el.style.opacity = '0'; el.style.transform = 'translateX(40px)'; }
+            setTimeout(() => {
+                cart.splice(idx, 1);
+                saveCart(cart);
+                renderCart();
+            }, 350);
+        }
+
+        let currentDiscount = 0;
+        const promoCodes = { 'GLOWUP10': 0.10, 'BEAUTY20': 0.20, 'GLOW15': 0.15 };
+
+        function applyPromo() {
+            const code = document.getElementById('promoInput').value.trim().toUpperCase();
+            if (promoCodes[code]) {
+                currentDiscount = promoCodes[code];
+                document.getElementById('promoInput').style.borderColor = 'var(--teal)';
+                updateSummary();
+            } else {
+                document.getElementById('promoInput').style.borderColor = 'var(--rose-deep)';
+                document.getElementById('promoInput').value = '';
+                document.getElementById('promoInput').placeholder = 'Invalid code 💔';
+                setTimeout(() => {
+                    document.getElementById('promoInput').style.borderColor = '';
+                    document.getElementById('promoInput').placeholder = 'GLOWUP10';
+                }, 2000);
+            }
+        }
+
+        function checkout() {
+            if (!getCart().length) return;
+            window.location.href = 'checkout.html';
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').classList.remove('show');
+            window.location.href = 'index.html';
+        }
+
+        /* ── NAV SCROLL ───────────────────────────────── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+            document.getElementById('stb').classList.toggle('show', scrollY > 300);
+        });
+
+        /* ── INIT ─────────────────────────────────────── */
+        renderCart();
+    </script>
+    <script src="cart.js"></script>
+</body>
+
+</html>

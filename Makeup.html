@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/Makeup.css">
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html" class="active">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='cart.html'">🛒<span class="cart-dot"
+                    id="cartBadge">0</span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <span class="petal" style="left:6%;animation-duration:12s;animation-delay:0s">🌸</span>
+        <span class="petal" style="left:18%;animation-duration:16s;animation-delay:4s">💄</span>
+        <span class="petal" style="left:70%;animation-duration:14s;animation-delay:6s">✿</span>
+        <span class="petal" style="left:86%;animation-duration:18s;animation-delay:2s">🌺</span>
+        <h1>Shop <em>Makeup</em> </h1>
+        <p>perfume · lenses · nails · and everything in between 🌸</p>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="m-item">💄 Makeup</span>
+            <span class="m-item">🌸 Perfume</span>
+            <span class="m-item">👁️ Lenses</span>
+            <span class="m-item">💅 Nails</span>
+            <span class="m-item">✨ New Arrivals Weekly</span>
+            <span class="m-item">💌 Free Shipping +75 EGP</span>
+            <span class="m-item">💕 30 Day Returns</span>
+            <span class="m-item">💄 Makeup</span>
+            <span class="m-item">🌸 Perfume</span>
+            <span class="m-item">👁️ Lenses</span>
+            <span class="m-item">💅 Nails</span>
+            <span class="m-item">✨ New Arrivals Weekly</span>
+            <span class="m-item">💌 Free Shipping +75 EGP</span>
+            <span class="m-item">💕 30 Day Returns</span>
+        </div>
+    </div>
+
+    <!-- SHOP BODY -->
+    <div class="shop-wrap">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar reveal">
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Search</div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search products..." oninput="doFilter()" />
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Category</div>
+                <div class="cat-filters">
+                    <button class="cat-btn active" data-main="all" onclick="selectMain(this)">
+                        <div class="cat-left"><span class="cat-ico">🌸</span><span class="cat-lbl">All Products</span>
+                        </div>
+                        <span class="cat-count" id="cnt-all">0</span>
+                    </button>
+
+                    <!-- MAKEUP with sub-cats -->
+                    <button class="cat-btn" data-main="makeup" onclick="selectMain(this)">
+                        <div class="cat-left"><span class="cat-ico">💄</span><span class="cat-lbl">Makeup</span></div>
+                        <span class="cat-count" id="cnt-makeup">0</span>
+                    </button>
+                    <div class="sub-cats" id="sub-makeup">
+                        <button class="sub-btn" data-sub="face" onclick="selectSub(this)"><span
+                                class="sub-dot"></span>Face & Foundation</button>
+                        <button class="sub-btn" data-sub="lips" onclick="selectSub(this)"><span
+                                class="sub-dot"></span>Lips</button>
+                        <button class="sub-btn" data-sub="eyes" onclick="selectSub(this)"><span
+                                class="sub-dot"></span>Eyes</button>
+                        <button class="sub-btn" data-sub="blush" onclick="selectSub(this)"><span
+                                class="sub-dot"></span>Blush & Bronzer</button>
+                    </div>
+
+                    <button class="cat-btn" data-main="perfume" onclick="selectMain(this)">
+                        <div class="cat-left"><span class="cat-ico">🌸</span><span class="cat-lbl">Perfume</span></div>
+                        <span class="cat-count" id="cnt-perfume">0</span>
+                    </button>
+
+                    <button class="cat-btn" data-main="lenses" onclick="selectMain(this)">
+                        <div class="cat-left"><span class="cat-ico">👁️</span><span class="cat-lbl">Lenses</span></div>
+                        <span class="cat-count" id="cnt-lenses">0</span>
+                    </button>
+
+                    <button class="cat-btn" data-main="nails" onclick="selectMain(this)">
+                        <div class="cat-left"><span class="cat-ico">💅</span><span class="cat-lbl">Nails</span></div>
+                        <span class="cat-count" id="cnt-nails">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Max Price</div>
+                <div class="price-range">
+                    <input type="range" class="price-slider" id="priceSlider" min="10" max="200" value="200"
+                        oninput="updatePrice(this)" />
+                    <div class="price-labels">
+                        <span>EGP 10</span>
+                        <span>Up to <span class="price-val" id="priceVal">EGP 200</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Sort By</div>
+                <select class="sort-select" id="sortSelect" onchange="doFilter()">
+                    <option value="default">Featured</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="name">Name A–Z</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <div class="shop-main">
+            <div class="shop-topbar">
+                <div class="results-count">Showing <strong id="resCount">0</strong> products</div>
+                <div class="view-btns">
+                    <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="Grid"><i
+                            class="fas fa-th"></i></button>
+                    <button class="view-btn" id="listBtn" onclick="setView('list')" title="List"><i
+                            class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div class="prod-grid" id="prodGrid"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div class="foot-logo">Glow Up</div>
+                <p class="foot-p">Premium beauty for every woman. Clean formulas, gorgeous packaging, and products that
+                    actually work. 💕</p>
+                <div class="foot-socials">
+                    <a href="#" class="fsoc"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Shop</div>
+                <ul>
+                    <li><a href="shop.html">All Products</a></li>
+                    <li><a href="#">Makeup</a></li>
+                    <li><a href="#">Perfume</a></li>
+                    <li><a href="#">Lenses</a></li>
+                    <li><a href="#">Nails</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Help</div>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Shade Finder</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">About</div>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 Glow Up Beauty. Made with Nour mohammed</p>
+            <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </footer>
+
+    <div class="cart-toast" id="cartToast">
+        <span>🛒</span><span id="toastMsg">Added to bag!</span>
+    </div>
+    <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        /* ── DATA ─────────────────────────────────────── */
+        const products = [
+            // MAKEUP → face
+            { id: 1, main: 'makeup', sub: 'face', name: 'Velvet Matte Foundation', price: 48, old: null, stars: 5, badge: 'New', img: 'https://i.pinimg.com/1200x/c6/49/4d/c6494d2ba0eaf7a3af44842d0efa91df.jpg' },
+            { id: 2, main: 'makeup', sub: 'face', name: 'Dewy Skin Primer', price: 38, old: null, stars: 5, badge: null, img: 'https://i.pinimg.com/1200x/7b/18/4a/7b184a855918de65c0db4bb41790e1f0.jpg' },
+            { id: 3, main: 'makeup', sub: 'face', name: 'Highlighter Wand', price: 32, old: null, stars: 4, badge: null, img: 'https://i.pinimg.com/736x/5a/75/41/5a7541c4eba11f3503b575cd80efb623.jpg' },
+            { id: 4, main: 'makeup', sub: 'face', name: 'Poreless HD Foundation', price: 52, old: 65, stars: 5, badge: '-20%', img: 'https://i.pinimg.com/1200x/cc/46/c8/cc46c8c6b2b345aa9a7a83b669c52f4b.jpg' },
+            // MAKEUP → lips
+            { id: 5, main: 'makeup', sub: 'lips', name: 'Satin Lip Elixir', price: 28, old: null, stars: 4, badge: null, img: 'https://i.pinimg.com/736x/a4/ce/52/a4ce529eb66a4d6612f977f6accab1ae.jpg' },
+            { id: 6, main: 'makeup', sub: 'lips', name: 'Velvet Lip Colour', price: 28, old: null, stars: 5, badge: null, img: 'https://i.pinimg.com/1200x/a8/4a/38/a84a38cebc5a5bf9fe7a908297a32400.jpg' },
+            { id: 7, main: 'makeup', sub: 'lips', name: 'Rose Petal Lip Gloss', price: 22, old: 30, stars: 5, badge: 'Sale', img: 'https://i.pinimg.com/1200x/e8/33/b3/e833b34195d957732bc396a6a3872030.jpg' },
+            // MAKEUP → eyes
+            { id: 8, main: 'makeup', sub: 'eyes', name: 'Smoky Eye Palette', price: 42, old: 56, stars: 5, badge: '-25%', img: 'https://i.pinimg.com/1200x/8d/13/aa/8d13aab3eb2634a3c48caa9beace1645.jpg' },
+            { id: 9, main: 'makeup', sub: 'eyes', name: 'Volumizing Mascara', price: 34, old: null, stars: 5, badge: 'New', img: 'https://i.pinimg.com/736x/d2/12/88/d21288c3ec2ed65ba456ac7101ef620d.jpg' },
+            { id: 10, main: 'makeup', sub: 'eyes', name: 'Precision Eyeliner', price: 26, old: null, stars: 4, badge: null, img: 'https://i.pinimg.com/736x/52/aa/9f/52aa9f6332590e48e42ce558f6a0ce71.jpg' },
+            // MAKEUP → blush
+            { id: 11, main: 'makeup', sub: 'blush', name: 'Cherry Blossom Blush', price: 36, old: null, stars: 5, badge: 'Limited', img: 'https://i.pinimg.com/1200x/6d/2c/8c/6d2c8cb2439d80d3d2e3e415324de7c9.jpg' },
+            { id: 12, main: 'makeup', sub: 'blush', name: 'Sun-Kissed Bronzer', price: 40, old: 50, stars: 4, badge: 'Sale', img: 'https://i.pinimg.com/736x/42/85/ad/4285adbd8460b3fd6ed4ac043a1359d8.jpg' },
+            // PERFUME
+            { id: 13, main: 'perfume', sub: null, name: 'Rose Oud Parfum', price: 120, old: 150, stars: 5, badge: 'Bestseller', img: 'https://i.pinimg.com/1200x/f0/17/f4/f017f4fba4fc704e5179eaaeceb79c49.jpg' },
+            { id: 14, main: 'perfume', sub: null, name: 'Midnight Blush EDP', price: 95, old: null, stars: 5, badge: 'New', img: 'https://i.pinimg.com/1200x/f3/35/da/f335da8640ff844e99cf9594bcd253c9.jpg' },
+            { id: 15, main: 'perfume', sub: null, name: 'Velvet Sakura Mist', price: 68, old: 85, stars: 4, badge: 'Sale', img: 'https://i.pinimg.com/1200x/d9/90/55/d990555e8ce2469e71c0f12c13535d02.jpg' },
+            { id: 16, main: 'perfume', sub: null, name: 'Fleur Blanc EDP', price: 110, old: null, stars: 5, badge: null, img: 'https://i.pinimg.com/736x/11/53/58/11535875cb0be4494ee5d44dbebe5398.jpg' },
+            // LENSES
+            { id: 17, main: 'lenses', sub: null, name: 'Hazel Dream Lenses', price: 55, old: null, stars: 5, badge: 'New', img: 'https://i.pinimg.com/1200x/f2/5b/b4/f25bb475c978a5bf7ae1aab73b2a3ba5.jpg' },
+            { id: 18, main: 'lenses', sub: null, name: 'Aqua Blue Lenses', price: 55, old: 70, stars: 5, badge: 'Sale', img: 'https://i.pinimg.com/1200x/be/26/be/be26bef0f4e2f91429e5acaab99922ea.jpg' },
+            { id: 19, main: 'lenses', sub: null, name: 'Natural Honey Lenses', price: 60, old: null, stars: 4, badge: null, img: 'https://i.pinimg.com/736x/0c/d8/d1/0cd8d128745165ffa03ad47996692f28.jpg' },
+            { id: 20, main: 'lenses', sub: null, name: 'Grey Pearl Lenses', price: 58, old: 72, stars: 5, badge: '-20%', img: 'https://i.pinimg.com/736x/cd/ec/1f/cdec1f0e53e8664c69c57ea4b4d920dd.jpg' },
+            // NAILS
+            { id: 21, main: 'nails', sub: null, name: 'Gel Nail Colour Set', price: 35, old: 50, stars: 5, badge: '-30%', img: 'https://i.pinimg.com/474x/ed/06/db/ed06db5f1c436709b42d875f8472e0ee.jpg' },
+            { id: 22, main: 'nails', sub: null, name: 'Nail Art Stamping Kit', price: 28, old: null, stars: 4, badge: null, img: 'https://i.pinimg.com/1200x/14/09/e1/1409e101d1082958ca4ef3eff225fd65.jpg' },
+            { id: 23, main: 'nails', sub: null, name: 'French Tip Nail Strips', price: 18, old: null, stars: 5, badge: 'New', img: 'https://i.pinimg.com/1200x/63/c9/a3/63c9a3a717c91cf8a1111b35f6c15c48.jpg' },
+            { id: 24, main: 'nails', sub: null, name: 'Press-On Nail Set', price: 22, old: 30, stars: 5, badge: 'Sale', img: 'https://i.pinimg.com/1200x/54/5b/1b/545b1b0c7624f46b622b63ec8937ae60.jpg' },
+        ];
+
+        /* ── STATE ───────────────────────────────────── */
+        let cartCount = 0;
+        let activeMain = 'all';
+        let activeSub = null;
+        let maxPrice = 200;
+        let viewMode = 'grid';
+
+        /* ── COUNTS ──────────────────────────────────── */
+        function updateCounts() {
+            const mains = ['makeup', 'perfume', 'lenses', 'nails'];
+            document.getElementById('cnt-all').textContent = products.length;
+            mains.forEach(m => {
+                const el = document.getElementById('cnt-' + m);
+                if (el) el.textContent = products.filter(p => p.main === m).length;
+            });
+        }
+
+        /* ── RENDER ──────────────────────────────────── */
+        function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
+
+        function badgeCls(b) {
+            if (!b) return '';
+            return (b.toLowerCase().includes('sale') || b.includes('%') || b.toLowerCase().includes('best')) ? 'sale' : '';
+        }
+
+        function renderProducts() {
+            let list = products.filter(p => {
+                const mainOk = activeMain === 'all' || p.main === activeMain;
+                const subOk = !activeSub || p.sub === activeSub;
+                const priceOk = p.price <= maxPrice;
+                const q = document.getElementById('searchInput').value.toLowerCase();
+                const searchOk = !q || p.name.toLowerCase().includes(q) || p.main.includes(q);
+                return mainOk && subOk && priceOk && searchOk;
+            });
+
+            const sort = document.getElementById('sortSelect').value;
+            if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+            if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+            if (sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
+            if (sort === 'rating') list.sort((a, b) => b.stars - a.stars);
+
+            document.getElementById('resCount').textContent = list.length;
+
+            const grid = document.getElementById('prodGrid');
+            if (!list.length) {
+                grid.innerHTML = `<div class="empty-state"><div class="e-ico">🔍</div><h3>No products found</h3><p>Try a different search or category 💕</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = list.map((p, i) => `
+        <div class="prod-card" data-maincat="${p.main}" onclick="goToProduct(event,${p.id})">
+            <div class="prod-img-wrap">
+                ${p.badge ? `<span class="prod-badge ${badgeCls(p.badge)}">${p.badge}</span>` : ''}
+                <button class="wish-btn" onclick="toggleWish(event,this)">🤍</button>
+                <img src="${p.img}" alt="${p.name}" loading="lazy" />
+                <button class="add-btn" onclick="addToCart(event,'${p.name.replace(/'/g, "\\'")}')">Add to Bag 🛒</button>
+            </div>
+            <div class="prod-info">
+                <div class="prod-cat-tag">${p.sub ? p.sub : p.main}</div>
+                <div class="prod-name">${p.name}</div>
+                <div class="prod-stars">${stars(p.stars)}</div>
+                <div class="prod-price-row">
+                    <span class="prod-price ${p.old ? 'sale' : ''}">EGP ${p.price}.00</span>
+                    ${p.old ? `<span class="prod-old">EGP ${p.old}.00</span>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        /* ── ACTIONS ─────────────────────────────────── */
+        function selectMain(btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeMain = btn.dataset.main;
+            activeSub = null;
+
+            // toggle sub-cats
+            document.querySelectorAll('.sub-cats').forEach(s => s.classList.remove('open'));
+            document.querySelectorAll('.sub-btn').forEach(s => s.classList.remove('active'));
+            if (activeMain === 'makeup') document.getElementById('sub-makeup').classList.add('open');
+
+            renderProducts();
+        }
+
+        function selectSub(btn) {
+            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeSub = btn.dataset.sub;
+            // make sure makeup main is active
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.cat-btn[data-main="makeup"]').classList.add('active');
+            activeMain = 'makeup';
+            renderProducts();
+        }
+
+        function toggleWish(e, btn) {
+            e.stopPropagation();
+            btn.classList.toggle('liked');
+            btn.textContent = btn.classList.contains('liked') ? '❤️' : '🤍';
+        }
+
+        function getCart() { try { return JSON.parse(localStorage.getItem('glowup_cart')) || []; } catch { return []; } }
+        function saveCart(c) { localStorage.setItem('glowup_cart', JSON.stringify(c)); }
+        function addToCart(e, name) {
+            e.stopPropagation();
+            // find price and image from product card
+            const card = e.target.closest('.prod-card');
+            const priceEl = card ? card.querySelector('.prod-price') : null;
+            const price = priceEl ? parseFloat(priceEl.textContent.replace('EGP ', '').replace('.00', '')) : 0;
+            const imgEl = card ? card.querySelector('img') : null;
+            const img = imgEl ? imgEl.src : '';
+            const cart = getCart();
+            const ex = cart.find(i => i.name === name);
+            if (ex) { ex.qty++; } else { cart.push({ name, price, img, cat: 'Makeup', qty: 1 }); }
+            saveCart(cart);
+            cartCount = cart.reduce((s, i) => s + i.qty, 0);
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = cartCount;
+            badge.style.transform = 'scale(1.7)';
+            setTimeout(() => badge.style.transform = '', 300);
+
+            const btn = e.target;
+            const orig = btn.textContent;
+            btn.textContent = '✓ Added!';
+            btn.style.background = 'linear-gradient(135deg,#7ab8b0,#5a9890)';
+            setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1800);
+
+            const toast = document.getElementById('cartToast');
+            document.getElementById('toastMsg').textContent = `"${name}" added! 🎉`;
+            toast.classList.add('show');
+            clearTimeout(toast._t);
+            toast._t = setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function updatePrice(slider) {
+            maxPrice = parseInt(slider.value);
+            const pct = ((maxPrice - 10) / 190) * 100;
+            slider.style.background = `linear-gradient(to right, var(--rose-deep) 0%, var(--rose-deep) ${pct}%, rgba(232,160,176,0.3) ${pct}%)`;
+            document.getElementById('priceVal').textContent = `EGP ${maxPrice}`;
+            renderProducts();
+        }
+
+        function doFilter() { renderProducts(); }
+
+        function setView(mode) {
+            viewMode = mode;
+            document.getElementById('prodGrid').classList.toggle('list-view', mode === 'list');
+            document.getElementById('gridBtn').classList.toggle('active', mode === 'grid');
+            document.getElementById('listBtn').classList.toggle('active', mode === 'list');
+        }
+
+        /* ── NAV / SCROLL ────────────────────────────── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+            document.getElementById('stb').classList.toggle('show', scrollY > 400);
+        });
+
+        function goToProduct(e, id) {
+            if (e.target.closest('.wish-btn,.add-btn')) return;
+            window.location = 'product.html?id=' + id;
+        }
+        /* ── REVEAL ──────────────────────────────────── */
+        const revObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+        /* ── INIT ────────────────────────────────────── */
+        updateCounts();
+        renderProducts();
+        // Init badge
+        (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+    </script>
+</body>
+
+</html>

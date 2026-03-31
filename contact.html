@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" style="position:relative">🛒<span class="cart-dot"
+                    id="cartBadge">0</span></button>
+        </div>
+    </nav>
+
+    <!-- HERO TEXT -->
+    <section class="page-hero">
+        <span class="petal" style="left:8%;animation-duration:12s;animation-delay:0s">🌸</span>
+        <span class="petal" style="left:20%;animation-duration:16s;animation-delay:3s">🌷</span>
+        <span class="petal" style="left:75%;animation-duration:14s;animation-delay:5s">✿</span>
+        <span class="petal" style="left:88%;animation-duration:18s;animation-delay:2s">🌺</span>
+
+
+        <h1>Say <em>Hello</em>, darling</h1>
+        <p>because you deserve the best care 🌸</p>
+    </section>
+
+    <!-- CONTACT CARD -->
+    <section class="contact-section">
+        <div class="contact-card reveal">
+
+            <!-- LEFT -->
+            <div class="contact-left">
+                <div class="left-tag">Reach out</div>
+                <div class="left-title">Contact <em>Us</em></div>
+                <div class="left-script">we're always here 🌸</div>
+
+                <div class="info-rows">
+                    <div class="info-row">
+                        <div class="info-row-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="info-row-label">Address</div>
+                            <div class="info-row-value">Cairo, Egypt</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="info-row-label">Email</div>
+                            <div class="info-row-value">hello@glowup.com</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="info-row-label">Phone</div>
+                            <div class="info-row-value">+20 123 456 7890</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <div class="info-row-label">WhatsApp</div>
+                            <div class="info-row-value">+20 123 456 7890</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="left-socials">
+                    <a href="#" class="lsoc"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="lsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="lsoc"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="contact-right">
+                <div id="theForm" style="display:flex;flex-direction:column;flex:1">
+                    <div class="form-eyebrow">Get in Touch</div>
+                    <div class="form-title">Send us a <em>message</em></div>
+                    <p class="form-sub">Feel free to drop us a line — we reply within 24 hours 💕</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="fname" placeholder="Your name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Last name" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="femail" placeholder="youremail@example.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Message</label>
+                        <textarea id="fmsg" placeholder="Tell us everything, darling... 💕"></textarea>
+                    </div>
+
+                    <button class="btn-send" onclick="sendForm()">Send Message 💌</button>
+                </div>
+
+                <div class="form-success" id="successMsg">
+                    <div class="success-ico">🌸</div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out, darling.<br />We'll get back to you within 24 hours 💕</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div class="foot-logo">Glow Up</div>
+                <p class="foot-p">Premium beauty for every woman. Clean formulas, gorgeous packaging, and products that
+                    actually work. 💕</p>
+                <div class="foot-socials">
+                    <a href="#" class="fsoc"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Shop</div>
+                <ul>
+                    <li><a href="shop.html">All Products</a></li>
+                    <li><a href="shop.html#makeup">Makeup</a></li>
+                    <li><a href="shop.html#skincare">Skincare</a></li>
+                    <li><a href="shop.html#new">New Arrivals</a></li>
+                    <li><a href="shop.html#sale">Sale 🏷️</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Help</div>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Shade Finder</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">About</div>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 Glow Up Beauty. Made with Nour mohammed</p>
+            <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </footer>
+
+    <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        const navbar = document.getElementById('nav');
+        const stb = document.getElementById('stb');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', scrollY > 60);
+            stb.classList.toggle('show', scrollY > 300);
+        });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        function sendForm() {
+            const fname = document.getElementById('fname').value.trim();
+            const femail = document.getElementById('femail').value.trim();
+            const fmsg = document.getElementById('fmsg').value.trim();
+            let valid = true;
+            [['fname', fname], ['femail', femail], ['fmsg', fmsg]].forEach(([id, val]) => {
+                if (!val) {
+                    const el = document.getElementById(id);
+                    el.style.borderColor = 'var(--rose-deep)';
+                    el.style.animation = 'shake 0.4s ease';
+                    valid = false;
+                    setTimeout(() => { el.style.borderColor = ''; el.style.animation = ''; }, 1500);
+                }
+            });
+            if (!valid) return;
+            document.getElementById('theForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'flex';
+        }
+    </script>
+     <script src="cart.js"></script>
+</body>
+
+</html>

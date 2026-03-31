@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --rose: #e8a0b0;
+            --rose-deep: #c9687e;
+            --blush: #f5dce0;
+            --peach: #f5c4a8;
+            --cream: #fef8f3;
+            --mauve: #b07080;
+            --teal: #7ab8b0;
+            --teal-light: #b8dbd8;
+            --dark: #3a2030;
+            --text: #5a3545;
+            --text-soft: #9a7080;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        .blob-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.28;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--rose);
+            top: -200px;
+            right: -150px;
+            animation: drift 14s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--peach);
+            bottom: 10%;
+            left: -100px;
+            animation: drift 18s ease-in-out infinite reverse;
+        }
+
+        .blob-3 {
+            width: 280px;
+            height: 280px;
+            background: var(--teal-light);
+            top: 50%;
+            left: 35%;
+            animation: drift 20s ease-in-out infinite 4s;
+        }
+
+        @keyframes drift {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            33% {
+                transform: translate(30px, -20px) scale(1.08)
+            }
+
+            66% {
+                transform: translate(-20px, 30px) scale(0.95)
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            padding: 24px 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 250, 248, 0.92);
+            backdrop-filter: blur(20px);
+            padding: 16px 52px;
+            box-shadow: 0 4px 40px rgba(200, 100, 120, 0.08);
+        }
+
+        .nav-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: var(--rose-deep);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '✿';
+            font-size: 14px;
+            position: absolute;
+            top: 2px;
+            right: -20px;
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            right: 50%;
+            height: 2px;
+            background: var(--rose-deep);
+            border-radius: 2px;
+            transition: left 0.3s, right 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--rose-deep);
+        }
+
+        .nav-links a:hover::after {
+            left: 0;
+            right: 0;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .nav-icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .nav-icon-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--rose-deep);
+            font-size: 9px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .breadcrumb {
+            padding: 110px 52px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-soft);
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .breadcrumb a {
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--rose-deep);
+        }
+
+        .breadcrumb span {
+            color: var(--rose-deep);
+            font-weight: 500;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .product-section {
+            padding: 32px 52px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: start;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* IMAGES */
+        .product-images {
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-img-wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 28px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fce8ec, #f5c8d0);
+            box-shadow: 0 24px 60px rgba(200, 100, 120, 0.18);
+            position: relative;
+            animation: fadeUp 0.7s ease 0.1s both;
+        }
+
+        .main-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease, transform 0.6s;
+        }
+
+        .main-img-wrap:hover img {
+            transform: scale(1.04);
+        }
+
+        .img-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: var(--rose-deep);
+            color: #fff;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 13px;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        .img-badge.sale {
+            background: var(--teal);
+        }
+
+        .thumb-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            animation: fadeUp 0.7s ease 0.2s both;
+            flex-wrap: wrap;
+        }
+
+        .thumb {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+            background: linear-gradient(145deg, #fce8ec, #f5c8d0);
+            flex-shrink: 0;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb.active,
+        .thumb:hover {
+            border-color: var(--rose-deep);
+            transform: translateY(-3px);
+        }
+
+        /* INFO */
+        .product-info {
+            animation: fadeUp 0.7s ease 0.15s both;
+        }
+
+        .prod-cat-tag {
+            font-size: 11px;
+            color: var(--rose-deep);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .prod-cat-tag::before {
+            content: '';
+            width: 18px;
+            height: 2px;
+            background: var(--rose);
+            border-radius: 2px;
+        }
+
+        .prod-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 400;
+            color: var(--dark);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .prod-title em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .prod-rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stars-disp {
+            color: var(--rose);
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        .rating-num {
+            font-size: 13px;
+            color: var(--text-soft);
+        }
+
+        .prod-price-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .prod-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .prod-price.sale {
+            color: var(--rose-deep);
+        }
+
+        .prod-old {
+            font-size: 18px;
+            color: var(--text-soft);
+            text-decoration: line-through;
+        }
+
+        .save-tag {
+            background: var(--blush);
+            color: var(--rose-deep);
+            font-size: 11px;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-weight: 500;
+        }
+
+        .prod-desc {
+            font-size: 14px;
+            color: var(--text-soft);
+            line-height: 1.85;
+            margin-bottom: 28px;
+            border-left: 3px solid var(--blush);
+            padding-left: 16px;
+        }
+
+        .option-group {
+            margin-bottom: 24px;
+        }
+
+        .option-label {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .option-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .opt-pill {
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(232, 160, 176, 0.3);
+            background: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--text-soft);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .opt-pill:hover,
+        .opt-pill.active {
+            background: var(--rose-deep);
+            border-color: var(--rose-deep);
+            color: #fff;
+        }
+
+        .add-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .qty-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1.5px solid rgba(232, 160, 176, 0.3);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 44px;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            color: var(--rose-deep);
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--blush);
+        }
+
+        .qty-num {
+            width: 36px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--dark);
+            font-weight: 500;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .btn-add {
+            flex: 1;
+            min-width: 180px;
+            background: linear-gradient(135deg, var(--rose-deep), var(--mauve));
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 28px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(200, 100, 120, 0.38);
+        }
+
+        .btn-wish {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(232, 160, 176, 0.3);
+            background: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-wish:hover,
+        .btn-wish.liked {
+            border-color: var(--rose-deep);
+            background: var(--blush);
+        }
+
+        .trust-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(232, 160, 176, 0.2);
+            margin: 28px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            background: #fff;
+            border-radius: 50px;
+            padding: 4px;
+            box-shadow: 0 2px 16px rgba(200, 100, 120, 0.08);
+            width: fit-content;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 9px 20px;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--text-soft);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--rose-deep), var(--mauve));
+            color: #fff;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .ingredients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .ingr-tag {
+            background: var(--blush);
+            color: var(--rose-deep);
+            border-radius: 50px;
+            padding: 5px 14px;
+            font-size: 12px;
+        }
+
+        .how-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .how-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose-deep), var(--mauve));
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 14px;
+            color: var(--text-soft);
+            line-height: 1.7;
+            padding-top: 4px;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 16px rgba(200, 100, 120, 0.07);
+        }
+
+        .review-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .reviewer {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .rev-stars {
+            color: var(--rose);
+            font-size: 12px;
+        }
+
+        .rev-date {
+            font-size: 11px;
+            color: var(--text-soft);
+            margin-bottom: 8px;
+        }
+
+        .rev-text {
+            font-size: 13px;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        /* RELATED */
+        .related-section {
+            padding: 0 52px 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .sec-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .sec-tag::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--rose);
+            border-radius: 2px;
+        }
+
+        .sec-h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3vw, 38px);
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 36px;
+        }
+
+        .sec-h2 em {
+            font-style: italic;
+            color: var(--rose-deep);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .rel-card {
+            border-radius: 18px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(200, 100, 120, 0.08);
+            cursor: pointer;
+            transition: transform 0.35s, box-shadow 0.35s;
+        }
+
+        .rel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(200, 100, 120, 0.16);
+        }
+
+        .rel-img {
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fce8ec, #f5c8d0);
+        }
+
+        .rel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .rel-card:hover .rel-img img {
+            transform: scale(1.06);
+        }
+
+        .rel-info {
+            padding: 14px 16px 18px;
+        }
+
+        .rel-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .rel-price {
+            font-size: 14px;
+            color: var(--rose-deep);
+            font-weight: 500;
+        }
+
+        .cart-toast {
+            position: fixed;
+            bottom: 88px;
+            right: 28px;
+            background: var(--dark);
+            color: #fff;
+            border-radius: 14px;
+            padding: 14px 22px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 999;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s;
+            pointer-events: none;
+            max-width: 300px;
+        }
+
+        .cart-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            padding: 80px 52px 40px;
+            background: var(--dark);
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 52px;
+            margin-bottom: 52px;
+        }
+
+        .foot-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 40px;
+            color: var(--rose);
+            margin-bottom: 14px;
+        }
+
+        .foot-p {
+            font-size: 13px;
+            color: rgba(255, 240, 245, 0.5);
+            line-height: 1.8;
+            max-width: 280px;
+            margin-bottom: 24px;
+        }
+
+        .foot-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .fsoc {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(232, 160, 176, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .fsoc:hover {
+            background: rgba(232, 160, 176, 0.25);
+            border-color: var(--rose);
+            transform: translateY(-3px);
+        }
+
+        .foot-title {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rose);
+            margin-bottom: 20px;
+        }
+
+        .foot-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .foot-col ul a {
+            font-size: 13px;
+            color: rgba(255, 240, 245, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .foot-col ul a:hover {
+            color: var(--rose);
+        }
+
+        .foot-bottom {
+            padding-top: 28px;
+            border-top: 1px solid rgba(232, 160, 176, 0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .foot-copy {
+            font-size: 12px;
+            color: rgba(255, 240, 245, 0.3);
+        }
+
+        .foot-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .foot-links a {
+            font-size: 12px;
+            color: rgba(255, 240, 245, 0.3);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .foot-links a:hover {
+            color: var(--rose);
+        }
+
+        #stb {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose-deep), var(--mauve));
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 800;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.4s, transform 0.4s;
+            box-shadow: 0 8px 24px rgba(200, 100, 120, 0.35);
+        }
+
+        #stb.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #stb:hover {
+            transform: scale(1.1);
+        }
+
+        @media(max-width:900px) {
+            nav {
+                padding: 18px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .breadcrumb {
+                padding: 95px 24px 0;
+            }
+
+            .product-section {
+                grid-template-columns: 1fr;
+                padding: 24px 24px 60px;
+                gap: 36px;
+            }
+
+            .product-images {
+                position: static;
+            }
+
+            .related-section {
+                padding: 0 24px 60px;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            footer {
+                padding: 60px 24px 32px;
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='cart.html'">🛒<span class="cart-dot"
+                    id="cartBadge">0</span></button>
+        </div>
+    </nav>
+
+    <div class="breadcrumb" id="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right" style="font-size:9px"></i>
+        <a href="#" id="breadBack">Shop</a>
+        <i class="fas fa-chevron-right" style="font-size:9px"></i>
+        <span id="breadName">Product</span>
+    </div>
+
+    <div class="product-section">
+        <!-- LEFT -->
+        <div class="product-images">
+            <div class="main-img-wrap">
+                <span class="img-badge" id="prodBadge" style="display:none"></span>
+                <img id="mainImg" src="" alt="" />
+            </div>
+            <div class="thumb-row" id="thumbRow"></div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="product-info">
+            <div class="prod-cat-tag" id="prodCat"></div>
+            <h1 class="prod-title" id="prodTitle"></h1>
+            <div class="prod-rating">
+                <span class="stars-disp" id="prodStars"></span>
+                <span class="rating-num" id="prodRating"></span>
+            </div>
+            <div class="prod-price-row" id="priceRow"></div>
+            <p class="prod-desc" id="prodDesc"></p>
+
+            <div class="option-group">
+                <div class="option-label">Size</div>
+                <div class="option-pills">
+                    <button class="opt-pill" onclick="selectOpt(this)">15 ml</button>
+                    <button class="opt-pill active" onclick="selectOpt(this)">30 ml</button>
+                    <button class="opt-pill" onclick="selectOpt(this)">50 ml</button>
+                </div>
+            </div>
+
+            <div class="trust-row">
+                <div class="trust-item"><span>🌿</span><span>Vegan</span></div>
+                <div class="trust-item"><span>🔬</span><span>Derm Tested</span></div>
+                <div class="trust-item"><span>💌</span><span>Free Shipping +75 EGP</span></div>
+                <div class="trust-item"><span>💕</span><span>30-Day Returns</span></div>
+            </div>
+
+            <div class="add-row">
+                <div class="qty-box">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    <input class="qty-num" id="qty" type="text" value="1" readonly />
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+                <button class="btn-add" id="addBtn" onclick="addToCart()">Add to Bag 🛒</button>
+                <button class="btn-wish" id="wishBtn" onclick="toggleWish()">🤍</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab(this,'details')">Details</button>
+                <button class="tab-btn" onclick="showTab(this,'ingredients')">Ingredients</button>
+                <button class="tab-btn" onclick="showTab(this,'howto')">How to Use</button>
+                <button class="tab-btn" onclick="showTab(this,'reviews')">Reviews ★</button>
+            </div>
+
+            <div class="tab-panel active" id="tab-details">
+                <p style="font-size:14px;color:var(--text-soft);line-height:1.85;margin-bottom:16px" id="detailDesc">
+                </p>
+                <ul style="font-size:13px;color:var(--text-soft);line-height:2;padding-left:18px" id="detailList"></ul>
+            </div>
+            <div class="tab-panel" id="tab-ingredients">
+                <p style="font-size:13px;color:var(--text-soft);margin-bottom:16px;line-height:1.7">Key active
+                    ingredients:</p>
+                <div class="ingredients-list" id="ingrList"></div>
+                <p style="font-size:11px;color:var(--text-soft);margin-top:20px;line-height:1.7" id="ingrFull"></p>
+            </div>
+            <div class="tab-panel" id="tab-howto">
+                <div class="how-steps" id="howSteps"></div>
+            </div>
+            <div class="tab-panel" id="tab-reviews">
+                <div class="reviews-list" id="reviewsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RELATED -->
+    <section class="related-section">
+        <div class="sec-tag">You May Also Love</div>
+        <h2 class="sec-h2">Complete your <em>routine</em> 🌸</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+    </section>
+
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div class="foot-logo">Glow Up</div>
+                <p class="foot-p">Premium beauty for every woman. Clean formulas, gorgeous packaging, and products that
+                    actually work. 💕</p>
+                <div class="foot-socials">
+                    <a href="#" class="fsoc"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Shop</div>
+                <ul>
+                    <li><a href="Makeup.html">Makeup</a></li>
+                    <li><a href="Skincare.html">Skincare</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale 🏷️</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Help</div>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">About</div>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 Glow Up Beauty. Made with Nour mohammed</p>
+            <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </footer>
+
+    <div class="cart-toast" id="cartToast"><span>🛒</span><span id="toastMsg">Added to bag!</span></div>
+    <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        /* ══════════════════════════════════════════════
+           ALL PRODUCTS DATA — same as shop + skincare
+        ══════════════════════════════════════════════ */
+        const allProducts = [
+            // ── SHOP (MAKEUP) ──
+            {
+                id: 1, source: 'shop', main: 'makeup', sub: 'face', name: 'Velvet Matte Foundation',
+                price: 48, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/c6/49/4d/c6494d2ba0eaf7a3af44842d0efa91df.jpg'],
+                desc: 'A full-coverage matte foundation with a velvet finish. Buildable, long-lasting, and perfect for all skin types.',
+                details: ['Full coverage, buildable formula', 'Up to 24h wear', 'Suitable for all skin types', 'Includes SPF 15', 'Non-comedogenic'],
+                ingredients: ['Hyaluronic Acid', 'Niacinamide', 'Vitamin E', 'Aloe Vera', 'Zinc Oxide'],
+                ingrFull: 'Aqua, Cyclopentasiloxane, Titanium Dioxide, Niacinamide, Sodium Hyaluronate, Tocopherol, Aloe Barbadensis Leaf Juice.',
+                steps: ['Apply primer for longer wear.', 'Squeeze a small amount onto fingertips or a brush.', 'Blend outward from the center of the face.', 'Build coverage where needed.', 'Set with a translucent powder.'],
+                reviews: [{ name: 'Nour M.', stars: 5, date: 'March 2025', text: 'Best foundation ever! It stays on all day and doesn\'t oxidize.' },
+                { name: 'Lina K.', stars: 5, date: 'Feb 2025', text: 'Perfect coverage and the matte finish is incredible! 💕' }]
+            },
+
+            {
+                id: 2, source: 'shop', main: 'makeup', sub: 'face', name: 'Dewy Skin Primer',
+                price: 38, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/1200x/7b/18/4a/7b184a855918de65c0db4bb41790e1f0.jpg'],
+                desc: 'A hydrating primer that blurs pores and gives your skin a dewy, glass-skin finish before makeup.',
+                details: ['Blurs pores instantly', 'Hydrating formula', 'Makes makeup last longer', 'Lightweight texture'],
+                ingredients: ['Hyaluronic Acid', 'Glycerin', 'Rose Water', 'Vitamin C'],
+                ingrFull: 'Aqua, Glycerin, Rosa Damascena Flower Water, Sodium Hyaluronate, Ascorbyl Glucoside, Dimethicone.',
+                steps: ['Cleanse and moisturise skin.', 'Apply a pea-sized amount all over face.', 'Wait 1 minute before applying foundation.', 'Blend lightly with fingertips.'],
+                reviews: [{ name: 'Sara H.', stars: 5, date: 'Jan 2025', text: 'My skin looks so glowy with this primer! Obsessed 🌸' },
+                { name: 'Mona A.', stars: 4, date: 'Dec 2024', text: 'Really nice primer, makes my foundation go on so smoothly.' }]
+            },
+
+            {
+                id: 3, source: 'shop', main: 'makeup', sub: 'face', name: 'Highlighter Wand',
+                price: 32, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/736x/5a/75/41/5a7541c4eba11f3503b575cd80efb623.jpg'],
+                desc: 'A liquid highlighter wand for blinding, buildable glow on cheekbones, eyes, and lips.',
+                details: ['Buildable shimmer', 'Suits all skin tones', 'Use on face and body', 'Long-lasting formula'],
+                ingredients: ['Mica', 'Jojoba Oil', 'Vitamin E', 'Pearl Extract'],
+                ingrFull: 'Aqua, Mica, Simmondsia Chinensis Seed Oil, Tocopherol, Hydrolyzed Pearl.',
+                steps: ['Apply dots along cheekbones.', 'Blend with fingertip in circular motions.', 'Layer for more intensity.', 'Can also be used on eyelids and cupid\'s bow.'],
+                reviews: [{ name: 'Rania S.', stars: 4, date: 'Feb 2025', text: 'The glow is insane! Great for a natural dewy look.' }]
+            },
+
+            {
+                id: 4, source: 'shop', main: 'makeup', sub: 'face', name: 'Poreless HD Foundation',
+                price: 52, old: 65, stars: 5, badge: '-20%',
+                imgs: ['https://i.pinimg.com/1200x/cc/46/c8/cc46c8c6b2b345aa9a7a83b669c52f4b.jpg'],
+                desc: 'A high-definition foundation that minimises pores and gives a flawless, camera-ready finish.',
+                details: ['HD photo-ready finish', 'Minimises pores', '18h wear time', 'Available in 30 shades'],
+                ingredients: ['Silica', 'Niacinamide', 'Hyaluronic Acid', 'Vitamin C'],
+                ingrFull: 'Aqua, Silica, Niacinamide, Sodium Hyaluronate, Ascorbic Acid, Glycerin.',
+                steps: ['Apply with a damp beauty blender.', 'Build from the T-zone outward.', 'Set with powder for longer wear.'],
+                reviews: [{ name: 'Dina M.', stars: 5, date: 'March 2025', text: 'Incredible coverage and my pores are invisible! 💕' }]
+            },
+
+            {
+                id: 5, source: 'shop', main: 'makeup', sub: 'lips', name: 'Satin Lip Elixir',
+                price: 28, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/736x/a4/ce/52/a4ce529eb66a4d6612f977f6accab1ae.jpg'],
+                desc: 'A nourishing lip elixir with a satin finish that hydrates and plumps lips with every wear.',
+                details: ['Satin finish', 'Hydrates and plumps', '8h moisture', 'Non-sticky formula'],
+                ingredients: ['Hyaluronic Acid', 'Vitamin E', 'Rosehip Oil', 'Shea Butter'],
+                ingrFull: 'Ricinus Communis Seed Oil, Shea Butter, Sodium Hyaluronate, Tocopherol, Rosa Canina Fruit Oil.',
+                steps: ['Apply directly from the bullet.', 'Layer for more colour intensity.', 'Reapply as needed throughout the day.'],
+                reviews: [{ name: 'Yara T.', stars: 4, date: 'Feb 2025', text: 'So moisturising and the colour is gorgeous!' }]
+            },
+
+            {
+                id: 6, source: 'shop', main: 'makeup', sub: 'lips', name: 'Velvet Lip Colour',
+                price: 28, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/1200x/a8/4a/38/a84a38cebc5a5bf9fe7a908297a32400.jpg'],
+                desc: 'A rich, pigmented lip colour with a velvet matte finish. Long-lasting and comfortable to wear.',
+                details: ['Intense pigment', 'Velvet matte finish', '12h wear', 'Comfortable all day'],
+                ingredients: ['Vitamin E', 'Jojoba Oil', 'Beeswax', 'Carnauba Wax'],
+                ingrFull: 'Ricinus Communis Seed Oil, Cera Alba, Copernicia Cerifera Cera, Tocopherol, Simmondsia Chinensis Seed Oil.',
+                steps: ['Line lips first for precision.', 'Apply from center outward.', 'Press lips together to set.'],
+                reviews: [{ name: 'Hana R.', stars: 5, date: 'Jan 2025', text: 'The pigmentation is unreal! Lasts all day 🌸' }]
+            },
+
+            {
+                id: 7, source: 'shop', main: 'makeup', sub: 'lips', name: 'Rose Petal Lip Gloss',
+                price: 22, old: 30, stars: 5, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/1200x/e8/33/b3/e833b34195d957732bc396a6a3872030.jpg'],
+                desc: 'A plumping lip gloss with a rose petal tint. Non-sticky, high-shine, and oh-so-pretty.',
+                details: ['Plumping effect', 'High shine finish', 'Rose petal tint', 'Non-sticky'],
+                ingredients: ['Peptide Complex', 'Hyaluronic Acid', 'Rose Extract', 'Vitamin E'],
+                ingrFull: 'Polybutene, Hydrogenated Polyisobutene, Tocopherol, Rosa Damascena Flower Extract, Sodium Hyaluronate.',
+                steps: ['Apply one coat for a sheer gloss.', 'Layer over lipstick for extra shine.', 'Apply to center of lips for plumping effect.'],
+                reviews: [{ name: 'Salma N.', stars: 5, date: 'March 2025', text: 'The prettiest gloss ever! My lips look so plump 💕' }]
+            },
+
+            {
+                id: 8, source: 'shop', main: 'makeup', sub: 'eyes', name: 'Smoky Eye Palette',
+                price: 42, old: 56, stars: 5, badge: '-25%',
+                imgs: ['https://i.pinimg.com/1200x/8d/13/aa/8d13aab3eb2634a3c48caa9beace1645.jpg'],
+                desc: '12 ultra-pigmented shades in smoky neutrals, nudes, and shimmers. Perfect for day to night looks.',
+                details: ['12 shades', 'Highly pigmented', 'Matte & shimmer finishes', 'Long-lasting formula'],
+                ingredients: ['Mica', 'Talc', 'Magnesium Stearate', 'Vitamin E'],
+                ingrFull: 'Talc, Mica, Magnesium Stearate, Tocopherol, Zinc Stearate.',
+                steps: ['Apply light shade all over lid.', 'Pack medium shade on outer corner.', 'Blend darker shade into crease.', 'Add shimmer shade to center of lid.', 'Smoke out lower lash line.'],
+                reviews: [{ name: 'Farah K.', stars: 5, date: 'Feb 2025', text: 'The pigmentation is insane and the shimmers are blinding! 💕' },
+                { name: 'Nadia L.', stars: 5, date: 'Jan 2025', text: 'My favourite palette ever. Worth every penny!' }]
+            },
+
+            {
+                id: 9, source: 'shop', main: 'makeup', sub: 'eyes', name: 'Volumizing Mascara',
+                price: 34, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/736x/d2/12/88/d21288c3ec2ed65ba456ac7101ef620d.jpg'],
+                desc: 'A volumizing mascara that adds dramatic volume and length without clumping.',
+                details: ['Volumizing formula', 'No clumping', 'Lengthening effect', 'Smudge-proof'],
+                ingredients: ['Beeswax', 'Carnauba Wax', 'Vitamin E', 'Panthenol'],
+                ingrFull: 'Aqua, Cera Alba, Copernicia Cerifera Cera, Tocopherol, Panthenol, Glycerin.',
+                steps: ['Curl lashes before applying.', 'Apply from root to tip in zigzag motion.', 'Apply second coat for more volume.', 'Clean up any smudges with a cotton bud.'],
+                reviews: [{ name: 'Nour A.', stars: 5, date: 'March 2025', text: 'Best mascara I\'ve tried! No clumping at all 🌸' }]
+            },
+
+            {
+                id: 10, source: 'shop', main: 'makeup', sub: 'eyes', name: 'Precision Eyeliner',
+                price: 26, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/736x/52/aa/9f/52aa9f6332590e48e42ce558f6a0ce71.jpg'],
+                desc: 'An ultra-fine tip liquid eyeliner for precise lines. Intense black, smudge-proof, and waterproof.',
+                details: ['0.1mm ultra-fine tip', 'Waterproof formula', 'Intense black pigment', '24h staying power'],
+                ingredients: ['Carbon Black', 'Acrylates Copolymer', 'Panthenol'],
+                ingrFull: 'Aqua, Styrene/Acrylates Copolymer, Carbon Black, Panthenol, Glycerin.',
+                steps: ['Shake well before use.', 'Start from inner corner.', 'Draw in small strokes for control.', 'Wing out for a cat-eye look.'],
+                reviews: [{ name: 'Maha S.', stars: 4, date: 'Feb 2025', text: 'So precise and doesn\'t budge all day!' }]
+            },
+
+            {
+                id: 11, source: 'shop', main: 'makeup', sub: 'blush', name: 'Cherry Blossom Blush',
+                price: 36, old: null, stars: 5, badge: 'Limited',
+                imgs: ['https://i.pinimg.com/1200x/6d/2c/8c/6d2c8cb2439d80d3d2e3e415324de7c9.jpg'],
+                desc: 'A limited-edition silky blush in the prettiest cherry blossom pink. Blendable and buildable.',
+                details: ['Silky powder formula', 'Buildable coverage', 'Long-lasting', 'Limited edition shade'],
+                ingredients: ['Mica', 'Talc', 'Rose Extract', 'Vitamin E'],
+                ingrFull: 'Talc, Mica, Tocopherol, Rosa Damascena Flower Extract, Zinc Stearate.',
+                steps: ['Smile and apply to apples of cheeks.', 'Blend upward toward temples.', 'Layer for more colour.'],
+                reviews: [{ name: 'Lara M.', stars: 5, date: 'March 2025', text: 'The most beautiful blush shade! Bought 2 just in case 😂💕' }]
+            },
+
+            {
+                id: 12, source: 'shop', main: 'makeup', sub: 'blush', name: 'Sun-Kissed Bronzer',
+                price: 40, old: 50, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/42/85/ad/4285adbd8460b3fd6ed4ac043a1359d8.jpg'],
+                desc: 'A finely milled bronzer that gives a natural sun-kissed glow without looking orange.',
+                details: ['Natural finish', 'Finely milled formula', 'Buildable coverage', 'Suits all skin tones'],
+                ingredients: ['Mica', 'Iron Oxides', 'Vitamin E', 'Argan Oil'],
+                ingrFull: 'Talc, Mica, Iron Oxides, Tocopherol, Argania Spinosa Kernel Oil.',
+                steps: ['Use a fluffy brush.', 'Apply to forehead, cheekbones, and jawline.', 'Blend well for a natural finish.'],
+                reviews: [{ name: 'Hana B.', stars: 4, date: 'Jan 2025', text: 'Beautiful natural bronzer, not too orange at all!' }]
+            },
+
+            {
+                id: 13, source: 'shop', main: 'perfume', sub: null, name: 'Rose Oud Parfum',
+                price: 120, old: 150, stars: 5, badge: 'Bestseller',
+                imgs: ['https://i.pinimg.com/1200x/f0/17/f4/f017f4fba4fc704e5179eaaeceb79c49.jpg'],
+                desc: 'A luxurious oriental fragrance blending Bulgarian rose with warm oud and vanilla. Long-lasting and enchanting.',
+                details: ['Top notes: Rose & Bergamot', 'Heart: Oud & Amber', 'Base: Vanilla & Musk', '8–12h longevity', 'EDP concentration'],
+                ingredients: ['Rose Absolute', 'Oud Oil', 'Bergamot Oil', 'Vanilla Extract', 'White Musk'],
+                ingrFull: 'Alcohol Denat., Parfum, Rosa Damascena Flower Oil, Aquilaria Malaccensis Wood Extract, Citrus Bergamia Peel Oil, Vanilla Planifolia Extract.',
+                steps: ['Spray on pulse points: wrists, neck, behind ears.', 'Don\'t rub — let it dry naturally.', 'Apply to hair for extra sillage.', 'Store away from heat and light.'],
+                reviews: [{ name: 'Nadia F.', stars: 5, date: 'March 2025', text: 'The most beautiful scent I\'ve ever worn. So many compliments! 🌹' },
+                { name: 'Reem K.', stars: 5, date: 'Feb 2025', text: 'Lasts all day and smells absolutely divine. Worth every penny!' }]
+            },
+
+            {
+                id: 14, source: 'shop', main: 'perfume', sub: null, name: 'Midnight Blush EDP',
+                price: 95, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/f3/35/da/f335da8640ff844e99cf9594bcd253c9.jpg'],
+                desc: 'A romantic floral fragrance with a mysterious twist. Perfect for evenings and special occasions.',
+                details: ['Top notes: Peony & Raspberry', 'Heart: Jasmine & Rose', 'Base: Sandalwood & Cashmere', '6–8h longevity'],
+                ingredients: ['Peony Absolute', 'Jasmine Oil', 'Sandalwood Extract', 'Raspberry Ketone'],
+                ingrFull: 'Alcohol Denat., Parfum, Paeonia Officinalis Flower Extract, Jasminum Sambac Flower Oil, Santalum Album Wood Extract.',
+                steps: ['Spray 2–3 times on pulse points.', 'Apply to clean, moisturised skin.', 'Layer with unscented body lotion for longer wear.'],
+                reviews: [{ name: 'Sara A.', stars: 5, date: 'March 2025', text: 'So feminine and romantic. My new signature scent 💕' }]
+            },
+
+            {
+                id: 15, source: 'shop', main: 'perfume', sub: null, name: 'Velvet Sakura Mist',
+                price: 68, old: 85, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/1200x/d9/90/55/d990555e8ce2469e71c0f12c13535d02.jpg'],
+                desc: 'A light and airy cherry blossom mist. Fresh, feminine, and perfect for everyday wear.',
+                details: ['Fresh floral scent', 'Lightweight mist', '4–6h longevity', 'Perfect for daily use'],
+                ingredients: ['Cherry Blossom Extract', 'Peach Absolute', 'White Tea', 'Light Musk'],
+                ingrFull: 'Alcohol Denat., Aqua, Parfum, Prunus Serrulata Flower Extract, Camellia Sinensis Leaf Extract.',
+                steps: ['Spray generously over body and hair.', 'Reapply throughout the day.', 'Layer with matching body lotion.'],
+                reviews: [{ name: 'Lina P.', stars: 4, date: 'Jan 2025', text: 'So fresh and light! Perfect for spring days 🌸' }]
+            },
+
+            {
+                id: 16, source: 'shop', main: 'perfume', sub: null, name: 'Fleur Blanc EDP',
+                price: 110, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/736x/11/53/58/11535875cb0be4494ee5d44dbebe5398.jpg'],
+                desc: 'An elegant white floral fragrance with a clean, sophisticated finish. Timeless and refined.',
+                details: ['White floral bouquet', 'Clean & sophisticated', '7–10h longevity', 'EDP concentration'],
+                ingredients: ['White Rose', 'Gardenia', 'Lily of the Valley', 'Cedarwood'],
+                ingrFull: 'Alcohol Denat., Parfum, Rosa Alba Flower Oil, Gardenia Jasminoides Flower Extract, Cedrus Atlantica Bark Oil.',
+                steps: ['Apply to pulse points after shower.', 'Spray from 15cm distance.', 'Don\'t rub wrists together.'],
+                reviews: [{ name: 'Mona R.', stars: 5, date: 'Feb 2025', text: 'Elegant and sophisticated. Gets so many compliments at work!' }]
+            },
+
+            {
+                id: 17, source: 'shop', main: 'lenses', sub: null, name: 'Hazel Dream Lenses',
+                price: 55, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/f2/5b/b4/f25bb475c978a5bf7ae1aab73b2a3ba5.jpg'],
+                desc: 'Warm hazel lenses that add a natural depth to your eyes. UV protection included. 1 month wear.',
+                details: ['Natural hazel tone', 'UV protection', '1 month disposable', 'Water content 45%', 'BC 8.6mm'],
+                ingredients: ['HEMA', 'Methacrylic Acid', 'UV Blocker'],
+                ingrFull: 'Poly-HEMA, Methacrylic Acid Copolymer, UV-Absorbing Monomer, Buffered Saline Solution.',
+                steps: ['Wash hands thoroughly before handling.', 'Check lens for damage before inserting.', 'Place lens on fingertip and insert gently.', 'Remove before sleeping.', 'Store in fresh solution daily.'],
+                reviews: [{ name: 'Nour S.', stars: 5, date: 'March 2025', text: 'So natural looking! Everyone thinks it\'s my real eye colour 👁️✨' }]
+            },
+
+            {
+                id: 18, source: 'shop', main: 'lenses', sub: null, name: 'Aqua Blue Lenses',
+                price: 55, old: 70, stars: 5, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/1200x/be/26/be/be26bef0f4e2f91429e5acaab99922ea.jpg'],
+                desc: 'Stunning aqua blue lenses that make your eyes pop. Great for dark eyes too.',
+                details: ['Vivid aqua blue', 'Works on dark eyes', 'UV protection', '1 month disposable'],
+                ingredients: ['HEMA', 'Methacrylic Acid', 'UV Blocker'],
+                ingrFull: 'Poly-HEMA, Methacrylic Acid Copolymer, UV-Absorbing Monomer, Buffered Saline Solution.',
+                steps: ['Wash hands thoroughly.', 'Insert on a moisturised eye.', 'Max 8h daily wear.', 'Never sleep with lenses in.'],
+                reviews: [{ name: 'Farah H.', stars: 5, date: 'Feb 2025', text: 'The most beautiful blue lenses I\'ve tried! They really show on dark eyes 💙' }]
+            },
+
+            {
+                id: 19, source: 'shop', main: 'lenses', sub: null, name: 'Natural Honey Lenses',
+                price: 60, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/736x/0c/d8/d1/0cd8d128745165ffa03ad47996692f28.jpg'],
+                desc: 'Subtle honey-toned lenses that blend beautifully with light and dark eyes for a warm glow.',
+                details: ['Honey warm tone', 'Natural finish', 'UV protection', '1 month wear'],
+                ingredients: ['HEMA', 'Methacrylic Acid', 'UV Blocker'],
+                ingrFull: 'Poly-HEMA, Methacrylic Acid Copolymer, UV-Absorbing Monomer.',
+                steps: ['Always clean hands first.', 'Use fresh lens solution.', 'Wear max 8h per day.', 'Visit optician regularly.'],
+                reviews: [{ name: 'Rania K.', stars: 4, date: 'Jan 2025', text: 'Really pretty natural tone. Very comfortable to wear all day.' }]
+            },
+
+            {
+                id: 20, source: 'shop', main: 'lenses', sub: null, name: 'Grey Pearl Lenses',
+                price: 58, old: 72, stars: 5, badge: '-20%',
+                imgs: ['https://i.pinimg.com/736x/cd/ec/1f/cdec1f0e53e8664c69c57ea4b4d920dd.jpg'],
+                desc: 'Cool grey lenses with a pearl shimmer effect. Elegant and striking for any occasion.',
+                details: ['Cool grey tone', 'Pearl shimmer', 'UV protection', '1 month disposable'],
+                ingredients: ['HEMA', 'Methacrylic Acid', 'UV Blocker'],
+                ingrFull: 'Poly-HEMA, Methacrylic Acid Copolymer, UV-Absorbing Monomer.',
+                steps: ['Wash hands well.', 'Check for rips before inserting.', 'Remove immediately if uncomfortable.'],
+                reviews: [{ name: 'Dina A.', stars: 5, date: 'March 2025', text: 'The pearl effect is so unique and elegant! Love them 🩶' }]
+            },
+
+            {
+                id: 21, source: 'shop', main: 'nails', sub: null, name: 'Gel Nail Colour Set',
+                price: 35, old: 50, stars: 5, badge: '-30%',
+                imgs: ['https://i.pinimg.com/474x/ed/06/db/ed06db5f1c436709b42d875f8472e0ee.jpg'],
+                desc: 'A set of 6 long-lasting gel nail colours in gorgeous shades. Chip-resistant for up to 2 weeks.',
+                details: ['6 shades included', 'Up to 2 weeks wear', 'Chip-resistant', 'High-shine finish'],
+                ingredients: ['HEMA', 'Urethane Acrylate', 'Photoinitiator', 'Pigments'],
+                ingrFull: 'Urethane Acrylate Oligomer, HEMA, Di-HEMA Trimethylhexyl Dicarbamate, Hydroxycyclohexyl Phenyl Ketone, CI Pigments.',
+                steps: ['Prep nails — file and buff.', 'Apply base coat and cure.', 'Apply colour coat and cure.', 'Apply second colour coat and cure.', 'Finish with top coat and cure.', 'Wipe with cleanser.'],
+                reviews: [{ name: 'Yara M.', stars: 5, date: 'Feb 2025', text: 'Lasts 2 weeks without chipping! Amazing quality 💅' },
+                { name: 'Hana N.', stars: 5, date: 'Jan 2025', text: 'The colours are so pretty and pigmented. Love this set!' }]
+            },
+
+            {
+                id: 22, source: 'shop', main: 'nails', sub: null, name: 'Nail Art Stamping Kit',
+                price: 28, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/1200x/14/09/e1/1409e101d1082958ca4ef3eff225fd65.jpg'],
+                desc: 'A complete nail art stamping kit with 10 plates, scraper, and stamper. Create salon-level nail art at home.',
+                details: ['10 design plates', 'Scraper and stamper included', 'Works with any polish', 'Beginner friendly'],
+                ingredients: [],
+                ingrFull: 'Stainless steel stamping plates. Works with regular, gel, or stamping polish.',
+                steps: ['Apply polish over chosen design on plate.', 'Scrape excess polish off.', 'Press stamper onto plate.', 'Roll stamper onto nail.', 'Let dry completely.'],
+                reviews: [{ name: 'Sara L.', stars: 4, date: 'Jan 2025', text: 'So fun to use! Takes practice but results are amazing.' }]
+            },
+
+            {
+                id: 23, source: 'shop', main: 'nails', sub: null, name: 'French Tip Nail Strips',
+                price: 18, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/63/c9/a3/63c9a3a717c91cf8a1111b35f6c15c48.jpg'],
+                desc: 'Easy-to-apply nail strips for a perfect french tip every time. No drying required.',
+                details: ['20 strips per pack', 'No drying needed', 'Lasts up to 1 week', 'Easy peel-and-stick'],
+                ingredients: [],
+                ingrFull: 'Nail polish film strips with adhesive backing. Formaldehyde-free.',
+                steps: ['Clean and dry nails.', 'Choose the right size strip.', 'Peel and apply from cuticle.', 'Press firmly and smooth out.', 'File off excess at tip.'],
+                reviews: [{ name: 'Mona K.', stars: 5, date: 'March 2025', text: 'Perfect french tips every time! So easy 💅' }]
+            },
+
+            {
+                id: 24, source: 'shop', main: 'nails', sub: null, name: 'Press-On Nail Set',
+                price: 22, old: 30, stars: 5, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/1200x/54/5b/1b/545b1b0c7624f46b622b63ec8937ae60.jpg'],
+                desc: 'Salon-quality press-on nails in a beautiful rose design. Ready in 5 minutes, lasts up to 2 weeks.',
+                details: ['24 nails (12 sizes)', 'Glue and tabs included', 'Lasts up to 2 weeks', 'Salon quality finish'],
+                ingredients: [],
+                ingrFull: 'ABS Acrylic nails with nail glue included. Non-toxic, formaldehyde-free.',
+                steps: ['Clean and buff natural nails.', 'Choose correct size for each finger.', 'Apply glue to natural nail.', 'Press on firmly for 30 seconds.', 'File and shape as desired.'],
+                reviews: [{ name: 'Lina A.', stars: 5, date: 'Feb 2025', text: 'These are so beautiful and last so long! No one can tell they\'re press-ons 💕' }]
+            },
+
+            // ── SKINCARE ──
+            {
+                id: 101, source: 'skincare', cat: 'cleanser', name: 'Foam Glow Cleanser',
+                price: 24, old: null, stars: 5, badge: 'Bestseller',
+                imgs: ['https://i.pinimg.com/736x/26/2f/b7/262fb7281b225c16a48d11c70eda0e38.jpg'],
+                desc: 'A gentle foaming cleanser that removes impurities, excess oil, and makeup without stripping moisture.',
+                details: ['Gentle for all skin types', 'Removes makeup effectively', 'pH balanced', 'No sulphates or parabens'],
+                ingredients: ['Glycerin', 'Aloe Vera', 'Green Tea Extract', 'Panthenol'],
+                ingrFull: 'Aqua, Glycerin, Cocamidopropyl Betaine, Aloe Barbadensis Leaf Juice, Camellia Sinensis Leaf Extract, Panthenol.',
+                steps: ['Wet face with lukewarm water.', 'Apply a small amount and lather.', 'Massage gently in circular motions.', 'Rinse thoroughly.', 'Pat dry with a clean towel.'],
+                reviews: [{ name: 'Nour M.', stars: 5, date: 'March 2025', text: 'My skin feels so clean but not tight at all! Love it 🌸' },
+                { name: 'Sara K.', stars: 5, date: 'Feb 2025', text: 'The best gentle cleanser! My sensitive skin loves it.' }]
+            },
+
+            {
+                id: 102, source: 'skincare', cat: 'cleanser', name: 'Micellar Rose Water',
+                price: 28, old: 35, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/9c/de/16/9cde1676ba327eba33461243a6390087.jpg'],
+                desc: 'A gentle micellar water infused with Bulgarian rose water. Removes makeup with zero rubbing.',
+                details: ['No-rinse formula', 'Removes all makeup', 'Rose-infused', 'Suitable for sensitive skin'],
+                ingredients: ['Rosa Damascena Water', 'Micelles', 'Glycerin', 'Allantoin'],
+                ingrFull: 'Aqua, Rosa Damascena Flower Water, Glycerin, Polysorbate 20, Allantoin, Disodium EDTA.',
+                steps: ['Soak a cotton pad.', 'Press gently onto face.', 'Swipe away makeup without rubbing.', 'No rinsing needed.'],
+                reviews: [{ name: 'Lina H.', stars: 4, date: 'Jan 2025', text: 'Removes even waterproof mascara! Smells amazing too 🌹' }]
+            },
+
+            {
+                id: 103, source: 'skincare', cat: 'cleanser', name: 'Salicylic Gel Cleanser',
+                price: 32, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/0d/f8/9f/0df89fd489e2dd8b46d6c672b5172514.jpg'],
+                desc: 'A BHA gel cleanser with 2% salicylic acid to unclog pores, control oil, and prevent breakouts.',
+                details: ['2% Salicylic Acid', 'Unclogs pores', 'Controls oiliness', 'Anti-breakout formula'],
+                ingredients: ['Salicylic Acid 2%', 'Zinc PCA', 'Tea Tree Oil', 'Niacinamide'],
+                ingrFull: 'Aqua, Salicylic Acid, Zinc PCA, Melaleuca Alternifolia Leaf Oil, Niacinamide, Glycerin.',
+                steps: ['Apply to wet skin.', 'Massage for 60 seconds.', 'Leave for 30 seconds for extra effect.', 'Rinse thoroughly.', 'Use SPF after — BHAs increase sun sensitivity.'],
+                reviews: [{ name: 'Farah R.', stars: 5, date: 'Feb 2025', text: 'My breakouts have reduced so much! Game changer for oily skin.' }]
+            },
+
+            {
+                id: 104, source: 'skincare', cat: 'toner', name: 'Hydrating Petal Toner',
+                price: 30, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/736x/a2/1a/9f/a21a9f30557df5d56696f89c3c07ea6e.jpg'],
+                desc: 'A hydrating toner packed with rose petals and hyaluronic acid. Preps skin for better serum absorption.',
+                details: ['Intense hydration', 'Balances skin pH', 'Improves product absorption', 'Alcohol-free'],
+                ingredients: ['Rose Petal Extract', 'Hyaluronic Acid', 'Glycerin', 'Centella Asiatica'],
+                ingrFull: 'Aqua, Rosa Damascena Flower Extract, Sodium Hyaluronate, Glycerin, Centella Asiatica Extract, Panthenol.',
+                steps: ['After cleansing, apply to cotton pad.', 'Swipe gently across face and neck.', 'Or pat directly with hands.', 'Follow with serum immediately.'],
+                reviews: [{ name: 'Dina S.', stars: 5, date: 'March 2025', text: 'My skin absorbs everything so much better now! 🌸' }]
+            },
+
+            {
+                id: 105, source: 'skincare', cat: 'toner', name: 'BHA Clarifying Toner',
+                price: 36, old: 45, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/66/a6/af/66a6af19cf606e6b60202f283d93a8bb.jpg'],
+                desc: 'A pore-clarifying toner with BHA to exfoliate, reduce blackheads, and control shine.',
+                details: ['BHA exfoliant', 'Minimises pores', 'Controls oil', 'Blackhead fighter'],
+                ingredients: ['Salicylic Acid', 'Witch Hazel', 'Niacinamide', 'Green Tea'],
+                ingrFull: 'Aqua, Salicylic Acid, Hamamelis Virginiana Water, Niacinamide, Camellia Sinensis Leaf Extract.',
+                steps: ['Use at night only.', 'Apply with cotton pad after cleansing.', 'Avoid eye area.', 'Follow with lightweight moisturiser.', 'Always use SPF the next morning.'],
+                reviews: [{ name: 'Rania M.', stars: 4, date: 'Feb 2025', text: 'My pores look so much smaller after 2 weeks!' }]
+            },
+
+            {
+                id: 106, source: 'skincare', cat: 'toner', name: 'Soothing Green Tea Toner',
+                price: 28, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/736x/e2/90/65/e29065d890aa71d3a59ab12d0a377f27.jpg'],
+                desc: 'A calming green tea toner that soothes redness, reduces inflammation, and hydrates sensitive skin.',
+                details: ['Anti-inflammatory', 'Soothes redness', 'Antioxidant rich', 'Alcohol-free'],
+                ingredients: ['Green Tea Extract', 'Centella Asiatica', 'Aloe Vera', 'Beta-Glucan'],
+                ingrFull: 'Aqua, Camellia Sinensis Leaf Extract, Centella Asiatica Extract, Aloe Barbadensis Leaf Juice, Beta-Glucan.',
+                steps: ['Apply morning and night.', 'Pat gently onto clean skin.', 'Layer 2–3 times for extra hydration (7-skin method).'],
+                reviews: [{ name: 'Hana K.', stars: 5, date: 'Jan 2025', text: 'My sensitive skin loves this! Redness gone after 1 week 💚' }]
+            },
+
+            {
+                id: 107, source: 'skincare', cat: 'serum', name: 'Glow Radiance Serum',
+                price: 54, old: 72, stars: 5, badge: 'Bestseller',
+                imgs: ['https://i.pinimg.com/1200x/df/f3/a4/dff3a455c770fcee19681b5a8acfb57a.jpg'],
+                desc: 'A lightweight Vitamin C serum that brightens dull skin, fades dark spots, and gives you a lit-from-within glow in just 2 weeks.',
+                details: ['15% Vitamin C complex', 'Fades dark spots', 'Brightens dull skin', 'Lightweight, non-greasy', 'Fragrance-free', 'Dermatologist tested'],
+                ingredients: ['Vitamin C 15%', 'Niacinamide', 'Hyaluronic Acid', 'Ferulic Acid', 'Aloe Vera', 'Centella Asiatica'],
+                ingrFull: 'Aqua, Ascorbic Acid, Niacinamide, Sodium Hyaluronate, Ferulic Acid, Tocopherol, Aloe Barbadensis Leaf Extract, Centella Asiatica Extract.',
+                steps: ['Cleanse and tone skin.', 'Apply 3–4 drops onto fingertips.', 'Press gently into skin — don\'t rub.', 'Follow with moisturiser.', 'Always use SPF in the morning.'],
+                reviews: [{ name: 'Nour M.', stars: 5, date: 'March 2025', text: 'Skin looked brighter after just one week! The texture is so lightweight 💕' },
+                { name: 'Sara K.', stars: 5, date: 'Feb 2025', text: 'My dark spots have faded significantly. Repurchased twice already!' },
+                { name: 'Lina H.', stars: 4, date: 'Jan 2025', text: 'Great serum! My sensitive skin didn\'t react at all.' }]
+            },
+
+            {
+                id: 108, source: 'skincare', cat: 'serum', name: 'Hyaluronic Hydra Drops',
+                price: 44, old: null, stars: 4, badge: null,
+                imgs: ['https://i.pinimg.com/1200x/e0/d4/ac/e0d4ac5e43adb0cc05f3408665255f1b.jpg'],
+                desc: 'A multi-weight hyaluronic acid serum that plumps, hydrates, and smooths skin from within.',
+                details: ['3 molecular weights of HA', 'Deep and surface hydration', 'Plumps fine lines', 'Suitable for all skin types'],
+                ingredients: ['Hyaluronic Acid (3 weights)', 'Glycerin', 'Panthenol', 'Aquaxyl'],
+                ingrFull: 'Aqua, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Sodium Hyaluronate Crosspolymer, Glycerin, Panthenol, Aquaxyl.',
+                steps: ['Apply to damp skin after toner.', 'Press 4–5 drops into skin.', 'Layer with moisturiser to seal in hydration.', 'Use morning and night.'],
+                reviews: [{ name: 'Mona S.', stars: 4, date: 'Feb 2025', text: 'My skin feels so plump and bouncy! Great hydrating serum.' }]
+            },
+
+            {
+                id: 109, source: 'skincare', cat: 'serum', name: 'Vitamin C Brightening Serum',
+                price: 62, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/736x/a2/f8/6c/a2f86c8505cc016b71ff72151f8fbae5.jpg'],
+                desc: 'A potent Vitamin C serum with 20% concentration for visible brightening and anti-aging benefits.',
+                details: ['20% Vitamin C', 'Powerful antioxidant', 'Anti-aging formula', 'Evens skin tone'],
+                ingredients: ['Vitamin C 20%', 'Vitamin E', 'Ferulic Acid', 'Resveratrol'],
+                ingrFull: 'Aqua, Ascorbic Acid, Tocopherol, Ferulic Acid, Resveratrol, Glycerin.',
+                steps: ['Use in the morning only.', 'Apply 2–3 drops to clean skin.', 'Let absorb for 2 minutes.', 'Follow with SPF — essential!'],
+                reviews: [{ name: 'Farah L.', stars: 5, date: 'March 2025', text: 'Most potent Vitamin C I\'ve tried. Skin is glowing! ✨' }]
+            },
+
+            {
+                id: 110, source: 'skincare', cat: 'serum', name: 'Retinol Night Renewal',
+                price: 78, old: 95, stars: 5, badge: '-18%',
+                imgs: ['https://i.pinimg.com/1200x/57/70/34/577034cd70176b8ffaf7e3e29d5a2678.jpg'],
+                desc: 'A gentle retinol serum for overnight renewal. Smooths fine lines, evens skin tone, and accelerates cell turnover.',
+                details: ['0.3% Retinol', 'Anti-aging formula', 'Overnight treatment', 'With soothing Ceramides'],
+                ingredients: ['Retinol 0.3%', 'Ceramides', 'Niacinamide', 'Squalane'],
+                ingrFull: 'Aqua, Retinol, Ceramide NP, Ceramide AP, Niacinamide, Squalane, Glycerin.',
+                steps: ['Use at night only.', 'Apply a pea-sized amount.', 'Start 2x per week, build up gradually.', 'Always use SPF the next morning.', 'Avoid mixing with other actives.'],
+                reviews: [{ name: 'Dina K.', stars: 5, date: 'Feb 2025', text: 'My fine lines are visibly smoother after 1 month! 🌟' }]
+            },
+
+            {
+                id: 111, source: 'skincare', cat: 'moisturiser', name: 'Botanical Moisture Cream',
+                price: 62, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/736x/29/0b/f9/290bf9ebbe5910bd1025e9ae9d8e8082.jpg'],
+                desc: 'A rich botanical moisturiser packed with plant extracts. Deeply nourishes and restores the skin barrier.',
+                details: ['Rich but non-greasy', 'Barrier-restoring', '24h hydration', 'Botanical formula'],
+                ingredients: ['Shea Butter', 'Ceramides', 'Rose Hip Oil', 'Squalane'],
+                ingrFull: 'Aqua, Butyrospermum Parkii Butter, Ceramide NP, Rosa Canina Fruit Oil, Squalane, Glycerin.',
+                steps: ['Apply after serum.', 'Use morning and night.', 'Warm between fingertips first.', 'Press gently into skin.'],
+                reviews: [{ name: 'Nour A.', stars: 5, date: 'March 2025', text: 'My dry skin is completely transformed! So hydrated 🌸' }]
+            },
+
+            {
+                id: 112, source: 'skincare', cat: 'moisturiser', name: 'Lightweight Gel Moisturiser',
+                price: 48, old: 60, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/94/17/56/9417563e2ac61dfa5e22c1e5fb01c8aa.jpg'],
+                desc: 'A water-gel moisturiser that hydrates without clogging pores. Perfect for oily and combination skin.',
+                details: ['Oil-free formula', 'Non-comedogenic', 'Mattifying effect', 'Lightweight texture'],
+                ingredients: ['Niacinamide', 'Hyaluronic Acid', 'Zinc PCA', 'Aloe Vera'],
+                ingrFull: 'Aqua, Glycerin, Niacinamide, Sodium Hyaluronate, Zinc PCA, Aloe Barbadensis Leaf Juice.',
+                steps: ['Apply after serum.', 'Use a pearl-sized amount.', 'Blend outward from center.', 'Let absorb before makeup.'],
+                reviews: [{ name: 'Rania H.', stars: 4, date: 'Jan 2025', text: 'Perfect for oily skin! My face stays matte all day.' }]
+            },
+
+            {
+                id: 113, source: 'skincare', cat: 'moisturiser', name: 'Barrier Repair Cream',
+                price: 72, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/1200x/45/a9/af/45a9af19b1880bb4e9254a80161d655b.jpg'],
+                desc: 'An intensive barrier repair cream for sensitive, reactive, and compromised skin.',
+                details: ['Ceramide complex', 'Repairs skin barrier', 'Fragrance-free', 'For sensitive skin'],
+                ingredients: ['Ceramides', 'Cholesterol', 'Fatty Acids', 'Panthenol'],
+                ingrFull: 'Aqua, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Fatty Acids, Panthenol, Glycerin.',
+                steps: ['Apply generously to affected areas.', 'Use morning and night.', 'Can layer over other moisturisers.', 'For very dry areas — apply while skin is damp.'],
+                reviews: [{ name: 'Sara R.', stars: 5, date: 'Feb 2025', text: 'My eczema-prone skin has never been better! This is a miracle cream.' }]
+            },
+
+            {
+                id: 114, source: 'skincare', cat: 'sunscreen', name: 'SPF 50 Dewy Sunscreen',
+                price: 45, old: null, stars: 5, badge: 'Bestseller',
+                imgs: ['https://i.pinimg.com/736x/19/8c/6a/198c6ac78926e6fc08f2cef6febaa692.jpg'],
+                desc: 'A dewy-finish SPF 50 sunscreen that protects and hydrates. No white cast, no stickiness.',
+                details: ['SPF 50 PA++++', 'No white cast', 'Dewy finish', 'Hydrating formula', 'Lightweight'],
+                ingredients: ['Zinc Oxide', 'Titanium Dioxide', 'Hyaluronic Acid', 'Niacinamide'],
+                ingrFull: 'Aqua, Zinc Oxide, Titanium Dioxide, Niacinamide, Sodium Hyaluronate, Glycerin, Cyclopentasiloxane.',
+                steps: ['Apply as last step of skincare.', 'Use 1/4 teaspoon for face.', 'Apply 15 minutes before sun exposure.', 'Reapply every 2 hours.', 'Don\'t forget neck and ears!'],
+                reviews: [{ name: 'Hana F.', stars: 5, date: 'March 2025', text: 'Finally an SPF with no white cast! Looks like skincare not sunscreen ☀️' },
+                { name: 'Mona L.', stars: 5, date: 'Feb 2025', text: 'My everyday must-have! The dewy finish is so beautiful.' }]
+            },
+
+            {
+                id: 115, source: 'skincare', cat: 'sunscreen', name: 'Matte Finish SPF 40',
+                price: 40, old: 50, stars: 4, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/9c/57/16/9c5716bad68c01105bac136cb35a9483.jpg'],
+                desc: 'A matte-finish SPF 40 for oily skin. Controls shine all day while protecting from UV.',
+                details: ['SPF 40 PA+++', 'Matte finish', 'Oil-control', 'No white cast'],
+                ingredients: ['Zinc Oxide', 'Silica', 'Niacinamide', 'Dimethicone'],
+                ingrFull: 'Aqua, Zinc Oxide, Silica, Niacinamide, Dimethicone, Glycerin.',
+                steps: ['Apply after moisturiser.', 'Use generous amount for full protection.', 'Reapply during the day.', 'Can be worn under makeup.'],
+                reviews: [{ name: 'Farah A.', stars: 4, date: 'Jan 2025', text: 'My oily skin stays matte with this! Great SPF.' }]
+            },
+
+            {
+                id: 116, source: 'skincare', cat: 'mask', name: 'Rose Clay Detox Mask',
+                price: 38, old: null, stars: 5, badge: null,
+                imgs: ['https://i.pinimg.com/736x/f2/d3/9a/f2d39a6986051514d641a70ef1f77d38.jpg'],
+                desc: 'A rose-infused clay mask that draws out impurities, tightens pores, and leaves skin glowing.',
+                details: ['Kaolin & Bentonite clay', 'Rose petal infusion', 'Pore-tightening', 'Detoxifying formula'],
+                ingredients: ['Kaolin Clay', 'Bentonite Clay', 'Rose Extract', 'Niacinamide'],
+                ingrFull: 'Kaolin, Bentonite, Rosa Damascena Flower Extract, Niacinamide, Glycerin, Aqua.',
+                steps: ['Apply an even layer to clean skin.', 'Avoid eye and lip area.', 'Leave for 10–15 minutes.', 'Rinse with warm water.', 'Follow with toner and moisturiser.', 'Use 1–2 times per week.'],
+                reviews: [{ name: 'Yara N.', stars: 5, date: 'Feb 2025', text: 'My pores look so much smaller after using this! Love it 🌹' }]
+            },
+
+            {
+                id: 117, source: 'skincare', cat: 'mask', name: 'Honey Glow Sleeping Mask',
+                price: 42, old: 55, stars: 5, badge: '-24%',
+                imgs: ['https://i.pinimg.com/736x/25/98/98/259898b2b924addfe9bddc51b7c9242d.jpg'],
+                desc: 'A luxurious overnight sleeping mask with honey and ceramides. Wake up to glowing, plump skin.',
+                details: ['Overnight formula', 'Honey & Ceramide complex', 'Deep hydration', 'Wake up glowing'],
+                ingredients: ['Royal Jelly', 'Ceramides', 'Hyaluronic Acid', 'Honey Extract'],
+                ingrFull: 'Aqua, Mel Extract, Ceramide NP, Sodium Hyaluronate, Glycerin, Royal Jelly Extract, Panthenol.',
+                steps: ['Apply as last step of nighttime routine.', 'Use 2–3 times per week.', 'Apply a generous layer.', 'No need to rinse — absorbs overnight.', 'Rinse in the morning.'],
+                reviews: [{ name: 'Lina S.', stars: 5, date: 'March 2025', text: 'I wake up with the most glowing skin! This is magic 🍯✨' }]
+            },
+
+            {
+                id: 118, source: 'skincare', cat: 'mask', name: 'Green Tea Sheet Mask (5pc)',
+                price: 22, old: null, stars: 4, badge: 'New',
+                imgs: ['https://i.pinimg.com/736x/07/f6/3b/07f63b42bf57b8231a960ed792eec8b7.jpg'],
+                desc: 'A pack of 5 antioxidant-rich green tea sheet masks. Calms, hydrates, and brightens in 15 minutes.',
+                details: ['5 masks per pack', '15 minute treatment', 'Antioxidant-rich', 'For all skin types'],
+                ingredients: ['Green Tea Extract', 'Centella Asiatica', 'Hyaluronic Acid', 'Beta-Glucan'],
+                ingrFull: 'Aqua, Camellia Sinensis Leaf Extract, Centella Asiatica Extract, Sodium Hyaluronate, Beta-Glucan, Glycerin.',
+                steps: ['Cleanse face first.', 'Unfold mask and apply.', 'Leave for 15 minutes.', 'Remove and pat in remaining essence.', 'No need to rinse.'],
+                reviews: [{ name: 'Rania A.', stars: 4, date: 'Feb 2025', text: 'My skin is so calm and bright after these! Great value for money.' }]
+            },
+
+            {
+                id: 119, source: 'skincare', cat: 'eye', name: 'Caffeine Eye Serum',
+                price: 50, old: null, stars: 5, badge: 'New',
+                imgs: ['https://i.pinimg.com/736x/14/04/1f/14041f9328a3915625754317f8439a47.jpg'],
+                desc: 'A depuffing eye serum powered by caffeine and peptides. Reduces dark circles and puffiness visibly.',
+                details: ['5% Caffeine', 'Peptide complex', 'Reduces puffiness', 'Lightens dark circles'],
+                ingredients: ['Caffeine 5%', 'Peptide Complex', 'Hyaluronic Acid', 'Vitamin K'],
+                ingrFull: 'Aqua, Caffeine, Palmitoyl Tripeptide-1, Sodium Hyaluronate, Phytonadione, Glycerin.',
+                steps: ['Apply morning and night.', 'Use ring finger — least pressure.', 'Tap gently around orbital bone.', 'Don\'t pull or rub skin.', 'Store in fridge for extra depuffing!'],
+                reviews: [{ name: 'Nour R.', stars: 5, date: 'March 2025', text: 'My dark circles are SO much lighter! The cold applicator is amazing 👁️✨' }]
+            },
+
+            {
+                id: 120, source: 'skincare', cat: 'eye', name: 'Peptide Eye Cream',
+                price: 65, old: 80, stars: 5, badge: 'Sale',
+                imgs: ['https://i.pinimg.com/736x/16/df/34/16df3493648a47933e071e8f4e7b2239.jpg'],
+                desc: 'A rich peptide eye cream that targets fine lines, crow\'s feet, and loss of firmness around the eyes.',
+                details: ['Multi-peptide complex', 'Firms & tightens', 'Reduces fine lines', 'Hydrating formula'],
+                ingredients: ['Matrixyl 3000', 'Argireline', 'Hyaluronic Acid', 'Retinyl Palmitate'],
+                ingrFull: 'Aqua, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Hexapeptide-3, Sodium Hyaluronate, Retinyl Palmitate.',
+                steps: ['Use at night — AM optionally.', 'Dot around orbital bone.', 'Pat in gently with ring finger.', 'Apply before heavier creams.'],
+                reviews: [{ name: 'Dina M.', stars: 5, date: 'Feb 2025', text: 'The fine lines around my eyes are visibly softer! Amazing cream 💕' },
+                { name: 'Sara F.', stars: 5, date: 'Jan 2025', text: 'Worth every penny! My eye area looks so much younger.' }]
+            }
+        ];
+
+        /* ══════════════════════════════════════
+           STATE
+        ══════════════════════════════════════ */
+        let cartCount = 0, qty = 1, wished = false;
+        let currentProduct = null;
+
+        /* ══════════════════════════════════════
+           INIT — read id from URL
+        ══════════════════════════════════════ */
+        function init() {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id')) || 107; // default: Glow Radiance Serum
+            currentProduct = allProducts.find(p => p.id === id) || allProducts[0];
+            renderProduct(currentProduct);
+            renderRelated(currentProduct);
+        }
+
+        /* ══════════════════════════════════════
+           RENDER PRODUCT
+        ══════════════════════════════════════ */
+        function renderProduct(p) {
+            document.title = p.name + ' – Glow Up';
+
+            // breadcrumb
+            const backHref = p.source === 'skincare' ? 'Skincare.html' : 'shop.html';
+            const backLabel = p.source === 'skincare' ? 'Skincare' : 'Makeup';
+            document.getElementById('breadBack').href = backHref;
+            document.getElementById('breadBack').textContent = backLabel;
+            document.getElementById('breadName').textContent = p.name;
+
+            // badge
+            const badgeEl = document.getElementById('prodBadge');
+            if (p.badge) {
+                badgeEl.textContent = p.badge;
+                badgeEl.style.display = 'block';
+                const isSale = p.badge.toLowerCase().includes('sale') || p.badge.includes('%');
+                badgeEl.className = 'img-badge' + (isSale ? ' sale' : '');
+            } else {
+                badgeEl.style.display = 'none';
+            }
+
+            // main image
+            const mainImg = document.getElementById('mainImg');
+            mainImg.src = p.imgs[0];
+            mainImg.alt = p.name;
+
+            // thumbnails
+            // Always show single image only
+            const thumbRow = document.getElementById('thumbRow');
+            thumbRow.innerHTML = '';
+
+            // category tag
+            const catLabel = p.sub ? p.sub + ' · ' + p.main : (p.cat ? p.cat + ' · skincare' : p.main);
+            document.getElementById('prodCat').textContent = catLabel;
+
+            // title — split last word for em
+            const words = p.name.split(' ');
+            const last = words.pop();
+            document.getElementById('prodTitle').innerHTML = words.join(' ') + ' <em>' + last + '</em>';
+
+            // stars + rating
+            document.getElementById('prodStars').textContent = '★'.repeat(p.stars) + '☆'.repeat(5 - p.stars);
+            document.getElementById('prodRating').textContent = (4 + p.stars * 0.1).toFixed(1) + ' · ' + (p.reviews ? p.reviews.length * 42 : 88) + ' reviews';
+
+            // price
+            let priceHtml = `<span class="prod-price ${p.old ? 'sale' : ''}">EGP ${p.price}.00</span>`;
+            if (p.old) {
+                const save = Math.round((1 - p.price / p.old) * 100);
+                priceHtml += `<span class="prod-old">EGP ${p.old}.00</span><span class="save-tag">Save ${save}%</span>`;
+            }
+            document.getElementById('priceRow').innerHTML = priceHtml;
+
+            // desc
+            document.getElementById('prodDesc').textContent = p.desc;
+
+            // details tab — show product-specific info
+            document.getElementById('detailDesc').textContent = p.desc || '';
+            document.getElementById('detailList').innerHTML = (p.details || []).map(d => `<li>${d}</li>`).join('');
+
+            // ingredients tab
+            document.getElementById('ingrList').innerHTML = (p.ingredients || []).map(i => `<span class="ingr-tag">${i}</span>`).join('');
+            document.getElementById('ingrFull').textContent = p.ingrFull || '';
+
+            // how to use tab
+            document.getElementById('howSteps').innerHTML = (p.steps || []).map((s, i) => `
+        <div class="how-step">
+            <div class="step-num">${i + 1}</div>
+            <div class="step-text">${s}</div>
+        </div>
+    `).join('');
+
+            // reviews tab
+            document.getElementById('reviewsList').innerHTML = (p.reviews || []).map(r => `
+        <div class="review-card">
+            <div class="review-top">
+                <span class="reviewer">${r.name} ✓</span>
+                <span class="rev-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</span>
+            </div>
+            <div class="rev-date">${r.date}</div>
+            <div class="rev-text">${r.text}</div>
+        </div>
+    `).join('');
+        }
+
+        /* ══════════════════════════════════════
+           RENDER RELATED
+        ══════════════════════════════════════ */
+        function renderRelated(p) {
+            const related = allProducts
+                .filter(x => x.id !== p.id && (x.source === p.source || x.cat === p.cat || x.main === p.main))
+                .slice(0, 4);
+
+            document.getElementById('relatedGrid').innerHTML = related.map(r => `
+        <div class="rel-card" onclick="window.location='product.html?id=${r.id}'">
+            <div class="rel-img"><img src="${r.imgs[0]}" alt="${r.name}" loading="lazy" /></div>
+            <div class="rel-info">
+                <div class="rel-name">${r.name}</div>
+                <div class="rel-price">EGP ${r.price}.00</div>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        /* ══════════════════════════════════════
+           ACTIONS
+        ══════════════════════════════════════ */
+        function setImg(thumb, src) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            const main = document.getElementById('mainImg');
+            main.style.opacity = '0';
+            setTimeout(() => { main.src = src; main.style.opacity = '1'; }, 200);
+            main.style.transition = 'opacity 0.25s';
+        }
+
+        function changeQty(d) {
+            qty = Math.max(1, qty + d);
+            document.getElementById('qty').value = qty;
+        }
+
+        function selectOpt(btn) {
+            btn.closest('.option-pills').querySelectorAll('.opt-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function getCart() { try { return JSON.parse(localStorage.getItem('glowup_cart')) || []; } catch { return []; } }
+        function saveCart(c) { localStorage.setItem('glowup_cart', JSON.stringify(c)); }
+        function addToCart() {
+            if (!currentProduct) return;
+            const cart = getCart();
+            const name = currentProduct.name;
+            const price = currentProduct.price;
+            const img = currentProduct.imgs ? currentProduct.imgs[0] : '';
+            const cat = currentProduct.cat || currentProduct.main || 'Glow Up';
+            const ex = cart.find(i => i.name === name);
+            if (ex) { ex.qty += qty; } else { cart.push({ name, price, img, cat, qty }); }
+            saveCart(cart);
+            cartCount = cart.reduce((s, i) => s + i.qty, 0);
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = cartCount;
+            badge.style.transform = 'scale(1.7)';
+            setTimeout(() => badge.style.transform = '', 300);
+            const btn = document.getElementById('addBtn');
+            btn.textContent = `✓ ${qty} Added! 🎉`;
+            btn.style.background = 'linear-gradient(135deg,#7ab8b0,#5a9890)';
+            setTimeout(() => { btn.textContent = 'Add to Bag 🛒'; btn.style.background = ''; }, 2000);
+            const toast = document.getElementById('cartToast');
+            document.getElementById('toastMsg').textContent = `${qty}x ${currentProduct.name} added! 🌸`;
+            toast.classList.add('show');
+            clearTimeout(toast._t);
+            toast._t = setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function toggleWish() {
+            wished = !wished;
+            const btn = document.getElementById('wishBtn');
+            btn.textContent = wished ? '❤️' : '🤍';
+            btn.classList.toggle('liked', wished);
+        }
+
+        function showTab(btn, id) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + id).classList.add('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+            document.getElementById('stb').classList.toggle('show', scrollY > 400);
+        });
+
+        // ── START ──
+        init();
+        (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skincare – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/Skincare.css">
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html" class="active">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='cart.html'">🛒<span class="cart-dot"
+                    id="cartBadge">0</span></button>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <span class="petal" style="left:6%;animation-duration:13s;animation-delay:0s">🌿</span>
+        <span class="petal" style="left:20%;animation-duration:17s;animation-delay:4s">🧴</span>
+        <span class="petal" style="left:68%;animation-duration:15s;animation-delay:6s">✿</span>
+        <span class="petal" style="left:85%;animation-duration:19s;animation-delay:2s">🌸</span>
+
+        <h1>Your <em>Skincare</em> </h1>
+        <p>glow from the inside out, darling 🌿</p>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="m-item">🌿 Vegan Formulas</span>
+            <span class="m-item">🔬 Dermatologist Tested</span>
+            <span class="m-item">💧 Hydration Guaranteed</span>
+            <span class="m-item">🧴 Clean Ingredients</span>
+            <span class="m-item">✨ Visible Results</span>
+            <span class="m-item">💌 Free Shipping +75 EGP</span>
+            <span class="m-item">💕 30 Day Returns</span>
+            <span class="m-item">🌿 Vegan Formulas</span>
+            <span class="m-item">🔬 Dermatologist Tested</span>
+            <span class="m-item">💧 Hydration Guaranteed</span>
+            <span class="m-item">🧴 Clean Ingredients</span>
+            <span class="m-item">✨ Visible Results</span>
+            <span class="m-item">💌 Free Shipping +75 EGP</span>
+            <span class="m-item">💕 30 Day Returns</span>
+        </div>
+    </div>
+
+    <div class="shop-wrap">
+        <aside class="sidebar reveal">
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Search</div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search skincare..." oninput="doFilter()" />
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Category</div>
+                <div class="cat-filters">
+                    <button class="cat-btn active" data-cat="all" onclick="selectCat(this)">
+                        <div class="cat-left"><span>🌸</span><span>All Skincare</span></div>
+                        <span class="cat-count" id="cnt-all">20</span>
+                    </button>
+                    <button class="cat-btn" data-cat="cleanser" onclick="selectCat(this)">
+                        <div class="cat-left"><span>🫧</span><span>Cleansers</span></div>
+                        <span class="cat-count" id="cnt-cleanser">3</span>
+                    </button>
+                    <button class="cat-btn" data-cat="toner" onclick="selectCat(this)">
+                        <div class="cat-left"><span>💦</span><span>Toners</span></div>
+                        <span class="cat-count" id="cnt-toner">3</span>
+                    </button>
+                    <button class="cat-btn" data-cat="serum" onclick="selectCat(this)">
+                        <div class="cat-left"><span>💧</span><span>Serums</span></div>
+                        <span class="cat-count" id="cnt-serum">4</span>
+                    </button>
+                    <button class="cat-btn" data-cat="moisturiser" onclick="selectCat(this)">
+                        <div class="cat-left"><span>🌸</span><span>Moisturisers</span></div>
+                        <span class="cat-count" id="cnt-moisturiser">3</span>
+                    </button>
+                    <button class="cat-btn" data-cat="sunscreen" onclick="selectCat(this)">
+                        <div class="cat-left"><span>☀️</span><span>Sunscreen</span></div>
+                        <span class="cat-count" id="cnt-sunscreen">2</span>
+                    </button>
+                    <button class="cat-btn" data-cat="mask" onclick="selectCat(this)">
+                        <div class="cat-left"><span>🎭</span><span>Masks</span></div>
+                        <span class="cat-count" id="cnt-mask">3</span>
+                    </button>
+                    <button class="cat-btn" data-cat="eye" onclick="selectCat(this)">
+                        <div class="cat-left"><span>👁️</span><span>Eye Care</span></div>
+                        <span class="cat-count" id="cnt-eye">2</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Skin Type</div>
+                <div class="skin-types">
+                    <button class="skin-pill active" data-skin="all" onclick="selectSkin(this)">All</button>
+                    <button class="skin-pill" data-skin="dry" onclick="selectSkin(this)">Dry</button>
+                    <button class="skin-pill" data-skin="oily" onclick="selectSkin(this)">Oily</button>
+                    <button class="skin-pill" data-skin="combo" onclick="selectSkin(this)">Combo</button>
+                    <button class="skin-pill" data-skin="sensitive" onclick="selectSkin(this)">Sensitive</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Max Price</div>
+                <div class="price-range">
+                    <input type="range" class="price-slider" id="priceSlider" min="10" max="200" value="200"
+                        oninput="updatePrice(this)" />
+                    <div class="price-labels">
+                        <span>EGP 10</span>
+                        <span>Up to <span class="price-val" id="priceVal">EGP 200</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Sort By</div>
+                <select class="sort-select" id="sortSelect" onchange="doFilter()">
+                    <option value="default">Featured</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="name">Name A–Z</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+
+        </aside>
+
+        <div class="shop-main">
+            <div class="shop-topbar">
+                <div class="results-count">Showing <strong id="resCount">0</strong> products</div>
+                <div class="view-btns">
+                    <button class="view-btn active" id="gridBtn" onclick="setView('grid')"><i
+                            class="fas fa-th"></i></button>
+                    <button class="view-btn" id="listBtn" onclick="setView('list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div class="prod-grid" id="prodGrid"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-grid">
+            <div>
+                <div class="foot-logo">Glow Up</div>
+                <p class="foot-p">Premium beauty for every woman. Clean formulas, gorgeous packaging, and products that
+                    actually work. 💕</p>
+                <div class="foot-socials">
+                    <a href="#" class="fsoc"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Shop</div>
+                <ul>
+                    <li><a href="Makeup.html">Makeup</a></li>
+                    <li><a href="Skincare.html">Skincare</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale 🏷️</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">Help</div>
+                <ul>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <div class="foot-title">About</div>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 Glow Up Beauty. Made with Nour mohammed</p>
+            <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+        </div>
+    </footer>
+
+    <div class="cart-toast" id="cartToast"><span>🛒</span><span id="toastMsg">Added to bag!</span></div>
+    <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        const products = [
+            { id: 101, cat: 'cleanser', name: 'Foam Glow Cleanser', price: 24, old: null, stars: 5, badge: 'Bestseller', skin: 'all', img: 'https://i.pinimg.com/736x/26/2f/b7/262fb7281b225c16a48d11c70eda0e38.jpg' },
+            { id: 102, cat: 'cleanser', name: 'Micellar Rose Water', price: 28, old: 35, stars: 4, badge: 'Sale', skin: 'sensitive', img: 'https://i.pinimg.com/736x/9c/de/16/9cde1676ba327eba33461243a6390087.jpg' },
+            { id: 103, cat: 'cleanser', name: 'Salicylic Gel Cleanser', price: 32, old: null, stars: 5, badge: 'New', skin: 'oily', img: 'https://i.pinimg.com/1200x/0d/f8/9f/0df89fd489e2dd8b46d6c672b5172514.jpg' },
+            { id: 104, cat: 'toner', name: 'Hydrating Petal Toner', price: 30, old: null, stars: 5, badge: null, skin: 'dry', img: 'https://i.pinimg.com/736x/a2/1a/9f/a21a9f30557df5d56696f89c3c07ea6e.jpg' },
+            { id: 105, cat: 'toner', name: 'BHA Clarifying Toner', price: 36, old: 45, stars: 4, badge: 'Sale', skin: 'oily', img: 'https://i.pinimg.com/736x/66/a6/af/66a6af19cf606e6b60202f283d93a8bb.jpg' },
+            { id: 106, cat: 'toner', name: 'Soothing Green Tea Toner', price: 28, old: null, stars: 5, badge: null, skin: 'sensitive', img: 'https://i.pinimg.com/736x/e2/90/65/e29065d890aa71d3a59ab12d0a377f27.jpg' },
+            { id: 107, cat: 'serum', name: 'Glow Radiance Serum', price: 54, old: 72, stars: 5, badge: 'Bestseller', skin: 'all', img: 'https://i.pinimg.com/1200x/df/f3/a4/dff3a455c770fcee19681b5a8acfb57a.jpg' },
+            { id: 108, cat: 'serum', name: 'Hyaluronic Hydra Drops', price: 44, old: null, stars: 4, badge: null, skin: 'dry', img: 'https://i.pinimg.com/1200x/e0/d4/ac/e0d4ac5e43adb0cc05f3408665255f1b.jpg' },
+            { id: 109, cat: 'serum', name: 'Vitamin C Brightening Serum', price: 62, old: null, stars: 5, badge: 'New', skin: 'all', img: 'https://i.pinimg.com/736x/a2/f8/6c/a2f86c8505cc016b71ff72151f8fbae5.jpg' },
+            { id: 110, cat: 'serum', name: 'Retinol Night Renewal', price: 78, old: 95, stars: 5, badge: '-18%', skin: 'combo', img: 'https://i.pinimg.com/1200x/57/70/34/577034cd70176b8ffaf7e3e29d5a2678.jpg' },
+            { id: 111, cat: 'moisturiser', name: 'Botanical Moisture Cream', price: 62, old: null, stars: 5, badge: null, skin: 'dry', img: 'https://i.pinimg.com/736x/29/0b/f9/290bf9ebbe5910bd1025e9ae9d8e8082.jpg' },
+            { id: 112, cat: 'moisturiser', name: 'Lightweight Gel Moisturiser', price: 48, old: 60, stars: 4, badge: 'Sale', skin: 'oily', img: 'https://i.pinimg.com/736x/94/17/56/9417563e2ac61dfa5e22c1e5fb01c8aa.jpg' },
+            { id: 113, cat: 'moisturiser', name: 'Barrier Repair Cream', price: 72, old: null, stars: 5, badge: 'New', skin: 'sensitive', img: 'https://i.pinimg.com/1200x/45/a9/af/45a9af19b1880bb4e9254a80161d655b.jpg' },
+            { id: 114, cat: 'sunscreen', name: 'SPF 50 Dewy Sunscreen', price: 45, old: null, stars: 5, badge: 'Bestseller', skin: 'all', img: 'https://i.pinimg.com/736x/19/8c/6a/198c6ac78926e6fc08f2cef6febaa692.jpg' },
+            { id: 115, cat: 'sunscreen', name: 'Matte Finish SPF 40', price: 40, old: 50, stars: 4, badge: 'Sale', skin: 'oily', img: 'https://i.pinimg.com/736x/9c/57/16/9c5716bad68c01105bac136cb35a9483.jpg' },
+            { id: 116, cat: 'mask', name: 'Rose Clay Detox Mask', price: 38, old: null, stars: 5, badge: null, skin: 'combo', img: 'https://i.pinimg.com/736x/f2/d3/9a/f2d39a6986051514d641a70ef1f77d38.jpg' },
+            { id: 117, cat: 'mask', name: 'Honey Glow Sleeping Mask', price: 42, old: 55, stars: 5, badge: '-24%', skin: 'dry', img: 'https://i.pinimg.com/736x/25/98/98/259898b2b924addfe9bddc51b7c9242d.jpg' },
+            { id: 118, cat: 'mask', name: 'Green Tea Sheet Mask (5pc)', price: 22, old: null, stars: 4, badge: 'New', skin: 'sensitive', img: 'https://i.pinimg.com/736x/07/f6/3b/07f63b42bf57b8231a960ed792eec8b7.jpg' },
+            { id: 119, cat: 'eye', name: 'Caffeine Eye Serum', price: 50, old: null, stars: 5, badge: 'New', skin: 'all', img: 'https://i.pinimg.com/736x/14/04/1f/14041f9328a3915625754317f8439a47.jpg' },
+            { id: 120, cat: 'eye', name: 'Peptide Eye Cream', price: 65, old: 80, stars: 5, badge: 'Sale', skin: 'all', img: 'https://i.pinimg.com/736x/16/df/34/16df3493648a47933e071e8f4e7b2239.jpg' },
+        ];
+
+        let cartCount = 0, activeCat = 'all', activeSkin = 'all', maxPrice = 200;
+
+        function starsHtml(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
+        function skinLabel(s) { return s === 'all' ? 'All Skin Types' : s.charAt(0).toUpperCase() + s.slice(1) + ' Skin'; }
+        function badgeCls(b) { if (!b) return ''; return (b.toLowerCase().includes('sale') || b.includes('%')) ? 'sale' : ''; }
+
+        function renderProducts() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            let list = products.filter(p => {
+                return (activeCat === 'all' || p.cat === activeCat)
+                    && (activeSkin === 'all' || p.skin === 'all' || p.skin === activeSkin)
+                    && p.price <= maxPrice
+                    && (!q || p.name.toLowerCase().includes(q) || p.cat.includes(q));
+            });
+            const sort = document.getElementById('sortSelect').value;
+            if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+            if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+            if (sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
+            if (sort === 'rating') list.sort((a, b) => b.stars - a.stars);
+            document.getElementById('resCount').textContent = list.length;
+            const grid = document.getElementById('prodGrid');
+            if (!list.length) { grid.innerHTML = `<div class="empty-state"><div class="e-ico">🔍</div><h3>No products found</h3><p>Try a different search or filter 💕</p></div>`; return; }
+            grid.innerHTML = list.map((p, i) => `
+       <div class="prod-card" data-maincat="${p.cat}" onclick="goToProduct(event,${p.id})">
+            <div class="prod-img-wrap">
+                ${p.badge ? `<span class="prod-badge ${badgeCls(p.badge)}">${p.badge}</span>` : ''}
+                <button class="wish-btn" onclick="toggleWish(event,this)">🤍</button>
+                <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+                <button class="add-btn" onclick="addToCart(event,'${p.name.replace(/'/g, "\\'")}')">Add to Bag 🛒</button>
+            </div>
+            <div class="prod-info">
+                <div class="prod-cat-tag">${p.cat}</div>
+                <div class="prod-name">${p.name}</div>
+                <div class="prod-stars">${starsHtml(p.stars)}</div>
+                <div class="prod-price-row">
+                    <span class="prod-price ${p.old ? 'sale' : ''}">EGP ${p.price}.00</span>
+                    ${p.old ? `<span class="prod-old">EGP ${p.old}.00</span>` : ''}
+                </div>
+                <div class="skin-tag">🌿 ${skinLabel(p.skin)}</div>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function selectCat(btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeCat = btn.dataset.cat; renderProducts();
+            (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+        }
+        function selectSkin(btn) {
+            document.querySelectorAll('.skin-pill').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeSkin = btn.dataset.skin; renderProducts();
+            (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+        }
+        function toggleWish(e, btn) { e.stopPropagation(); btn.classList.toggle('liked'); btn.textContent = btn.classList.contains('liked') ? '❤️' : '🤍'; }
+        function getCart() { try { return JSON.parse(localStorage.getItem('glowup_cart')) || []; } catch { return []; } }
+        function saveCart(c) { localStorage.setItem('glowup_cart', JSON.stringify(c)); }
+        function addToCart(e, name) {
+            e.stopPropagation();
+            const card = e.target.closest('.prod-card');
+            const priceEl = card ? card.querySelector('.prod-price') : null;
+            const price = priceEl ? parseFloat(priceEl.textContent.replace('EGP ', '').replace('.00', '')) : 0;
+            const imgEl = card ? card.querySelector('img') : null;
+            const img = imgEl ? imgEl.src : '';
+            const cart = getCart();
+            const ex = cart.find(i => i.name === name);
+            if (ex) { ex.qty++; } else { cart.push({ name, price, img, cat: 'Skincare', qty: 1 }); }
+            saveCart(cart);
+            cartCount = cart.reduce((s, i) => s + i.qty, 0);
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = cartCount; badge.style.transform = 'scale(1.7)';
+            setTimeout(() => badge.style.transform = '', 300);
+            const btn = e.target, orig = btn.textContent;
+            btn.textContent = '✓ Added!'; btn.style.background = 'linear-gradient(135deg,#7ab8b0,#5a9890)';
+            setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1800);
+            const toast = document.getElementById('cartToast');
+            document.getElementById('toastMsg').textContent = `"${name}" added! 🎉`;
+            toast.classList.add('show'); clearTimeout(toast._t);
+            toast._t = setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        function updatePrice(slider) {
+            maxPrice = parseInt(slider.value);
+            const pct = ((maxPrice - 10) / 190) * 100;
+            slider.style.background = `linear-gradient(to right,var(--rose-deep) 0%,var(--rose-deep) ${pct}%,rgba(232,160,176,0.3) ${pct}%)`;
+            document.getElementById('priceVal').textContent = `EGP ${maxPrice}`;
+            renderProducts();
+            (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+        }
+        function doFilter() {
+            renderProducts();
+            (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+        }
+        function setView(mode) {
+            document.getElementById('prodGrid').classList.toggle('list-view', mode === 'list');
+            document.getElementById('gridBtn').classList.toggle('active', mode === 'grid');
+            document.getElementById('listBtn').classList.toggle('active', mode === 'list');
+        }
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+            document.getElementById('stb').classList.toggle('show', scrollY > 400);
+        });
+        function goToProduct(e, id) {
+            if (e.target.closest('.wish-btn,.add-btn')) return;
+            window.location = 'product.html?id=' + id;
+        }
+        const revObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } }); }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+        renderProducts();
+        (function () { const c = JSON.parse(localStorage.getItem('glowup_cart') || '[]'); cartCount = c.reduce((s, i) => s + i.qty, 0); document.getElementById('cartBadge').textContent = cartCount; })();
+    </script>
+
+</body>
+
+</html>
