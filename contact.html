@@ -10,6 +10,41 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/contact.css">
+
+<style>
+/* ── Shared Navbar User ── */
+#navUserArea { display:inline-flex; align-items:center; }
+.btn-nav-login {
+  background: linear-gradient(135deg,#f8b4c8,#e8a0b4);
+  color:#fff; border:none; border-radius:20px;
+  padding:6px 16px; font-size:.82rem; font-weight:600;
+  text-decoration:none; cursor:pointer; margin-left:8px;
+  transition:opacity .2s;
+}
+.btn-nav-login:hover { opacity:.85; }
+.nav-user-menu {
+  position:relative; display:inline-block; margin-left:8px;
+}
+.nav-username {
+  background:linear-gradient(135deg,#f8b4c8,#e8a0b4);
+  color:#fff; border-radius:20px; padding:6px 14px;
+  font-size:.82rem; font-weight:600; cursor:pointer;
+  white-space:nowrap;
+}
+.nav-dropdown {
+  display:none; position:absolute; right:0; top:calc(100% + 6px);
+  background:#fff; border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  min-width:150px; z-index:9999; overflow:hidden;
+}
+.nav-user-menu:hover .nav-dropdown { display:block; }
+.nav-dropdown a {
+  display:block; padding:10px 18px;
+  font-size:.85rem; color:#555; text-decoration:none;
+  transition:background .15s;
+}
+.nav-dropdown a:hover { background:#fdf0f4; color:#c96b8a; }
+</style>
 </head>
 
 <body>
@@ -33,7 +68,8 @@
         <div class="nav-right">
             <button class="nav-icon-btn" style="position:relative">🛒<span class="cart-dot"
                     id="cartBadge">0</span></button>
-        </div>
+        <div id="navUserArea"></div>
+    </div>
     </nav>
 
     <!-- HERO TEXT -->
@@ -223,6 +259,41 @@
         }
     </script>
      <script src="cart.js"></script>
+
+<script>
+/* ── GlowUp: Shared Navbar User State ── */
+(function () {
+  /* Cart badge */
+  var cart = JSON.parse(localStorage.getItem('glowup_cart') || '[]');
+  var badge = document.getElementById('cartBadge');
+  if (badge) badge.textContent = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+
+  /* User area */
+  var user = JSON.parse(localStorage.getItem('glowup_user') || 'null');
+  var area = document.getElementById('navUserArea');
+  if (!area) return;
+
+  if (user) {
+    var adminLink = user.role === 'admin' ? '<a href="Admin.html">Dashboard 📊</a>' : '';
+    area.innerHTML =
+      '<div class="nav-user-menu">' +
+        '<span class="nav-username">👤 ' + user.name + '</span>' +
+        '<div class="nav-dropdown">' +
+          adminLink +
+          '<a href="Account.html">My Account 👤</a>' +
+          '<a href="#" onclick="glowLogout();return false;">Logout 👋</a>' +
+        '</div>' +
+      '</div>';
+  } else {
+    area.innerHTML = '<a href="Auth.html" class="btn-nav-login">Login 💕</a>';
+  }
+})();
+
+function glowLogout() {
+  localStorage.removeItem('glowup_user');
+  window.location.href = 'index.html';
+}
+</script>
 </body>
 
 </html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/auth.css">
+
+    <style>
+        /* ── Shared Navbar User ── */
+        #navUserArea {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-nav-login {
+            background: linear-gradient(135deg, #f8b4c8, #e8a0b4);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: opacity .2s;
+        }
+
+        .btn-nav-login:hover {
+            opacity: .85;
+        }
+
+        .nav-user-menu {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .nav-username {
+            background: linear-gradient(135deg, #f8b4c8, #e8a0b4);
+            color: #fff;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: .82rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+            min-width: 150px;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .nav-user-menu:hover .nav-dropdown {
+            display: block;
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 10px 18px;
+            font-size: .85rem;
+            color: #555;
+            text-decoration: none;
+            transition: background .15s;
+        }
+
+        .nav-dropdown a:hover {
+            background: #fdf0f4;
+            color: #c96b8a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='Cart.html'" style="position:relative">🛒<span
+                    class="cart-dot" id="cartBadge">0</span></button>
+            <div id="navUserArea"></div>
+        </div>
+    </nav>
+
+    <div class="auth-wrap">
+
+        <!-- LOGO -->
+        <div class="auth-logo">Glow Up</div>
+        <p class="auth-tagline">your beauty, your account 🌸</p>
+
+        <!-- TABS -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Login</button>
+            <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div class="auth-card" id="loginCard">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="loginEmail" placeholder="hello@example.com" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="pass-wrap">
+                    <input type="password" id="loginPass" placeholder="••••••••" />
+                    <button class="eye-btn" onclick="togglePass('loginPass', this)"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="auth-msg" id="loginMsg"></div>
+            <button class="btn-auth" onclick="doLogin()">Login 💕</button>
+            <p class="auth-switch">Don't have an account? <span onclick="switchTab('register')">Register</span></p>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div class="auth-card" id="registerCard" style="display:none">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="regName" placeholder="Nour Mohammed" />
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="regEmail" placeholder="hello@example.com" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="pass-wrap">
+                    <input type="password" id="regPass" placeholder="Min 6 characters" />
+                    <button class="eye-btn" onclick="togglePass('regPass', this)"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <div class="pass-wrap">
+                    <input type="password" id="regPass2" placeholder="Repeat password" />
+                    <button class="eye-btn" onclick="togglePass('regPass2', this)"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Account Type</label>
+                <select id="regRole" class="role-select">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="auth-msg" id="registerMsg"></div>
+            <button class="btn-auth" onclick="doRegister()">Create Account 🌸</button>
+            <p class="auth-switch">Already have an account? <span onclick="switchTab('login')">Login</span></p>
+        </div>
+
+    </div>
+
+    <script>
+        /* ── NAV ── */
+        window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 60));
+
+        /* ── TABS ── */
+        function switchTab(tab) {
+            document.getElementById('loginCard').style.display = tab === 'login' ? 'flex' : 'none';
+            document.getElementById('registerCard').style.display = tab === 'register' ? 'flex' : 'none';
+            document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+            document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+        }
+
+        /* ── SHOW/HIDE PASSWORD ── */
+        function togglePass(id, btn) {
+            const input = document.getElementById(id);
+            const isPass = input.type === 'password';
+            input.type = isPass ? 'text' : 'password';
+            btn.querySelector('i').className = isPass ? 'fas fa-eye-slash' : 'fas fa-eye';
+        }
+
+        /* ── SHOW MSG ── */
+        function showMsg(id, msg, type) {
+            const el = document.getElementById(id);
+            el.textContent = msg;
+            el.className = 'auth-msg ' + type;
+        }
+
+        /* ── LOGIN ── */
+        function doLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPass').value;
+            if (!email || !pass) { showMsg('loginMsg', 'Please fill in all fields 💕', 'error'); return; }
+
+            const btn = document.querySelector('#loginCard .btn-auth');
+            btn.textContent = 'Logging in...';
+            btn.disabled = true;
+
+            fetch('Login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password: pass })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        localStorage.setItem('glowup_user', JSON.stringify(data.user));
+                        showMsg('loginMsg', 'Welcome back, ' + data.user.name + '! 🌸', 'success');
+                        // Redirect based on user role
+                        const redirectUrl = data.user.role === 'admin' ? 'Admin.html' : 'index.html';
+                        setTimeout(() => window.location.href = redirectUrl, 1200);
+                    } else {
+                        showMsg('loginMsg', data.message, 'error');
+                        btn.textContent = 'Login 💕';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(() => { showMsg('loginMsg', 'Server error, try again', 'error'); btn.textContent = 'Login 💕'; btn.disabled = false; });
+        }
+
+        /* ── REGISTER ── */
+        function doRegister() {
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const pass = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+            const role = document.getElementById('regRole').value;
+
+            if (!name || !email || !pass || !pass2) { showMsg('registerMsg', 'Please fill in all fields 💕', 'error'); return; }
+            if (pass !== pass2) { showMsg('registerMsg', 'Passwords do not match', 'error'); return; }
+            if (pass.length < 6) { showMsg('registerMsg', 'Password must be at least 6 characters', 'error'); return; }
+
+            const btn = document.querySelector('#registerCard .btn-auth');
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+
+            fetch('Register.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password: pass, role })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        localStorage.setItem('glowup_user', JSON.stringify(data.user));
+                        showMsg('registerMsg', 'Account created! Welcome, ' + data.user.name + '! 🌸', 'success');
+                        // Redirect based on user role
+                        const redirectUrl = data.user.role === 'admin' ? 'Admin.html' : 'index.html';
+                        setTimeout(() => window.location.href = redirectUrl, 1200);
+                    } else {
+                        showMsg('registerMsg', data.message, 'error');
+                        btn.textContent = 'Create Account 🌸';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(() => { showMsg('registerMsg', 'Server error, try again', 'error'); btn.textContent = 'Create Account 🌸'; btn.disabled = false; });
+        }
+
+        /* ── ENTER KEY ── */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                if (document.getElementById('loginCard').style.display !== 'none') doLogin();
+                else doRegister();
+            }
+        });
+    </script>
+
+    <script>
+        /* ── GlowUp: Shared Navbar User State ── */
+        (function () {
+            var user = JSON.parse(localStorage.getItem('glowup_user') || 'null');
+            var area = document.getElementById('navUserArea');
+            if (!area) return;
+            if (user) {
+                area.innerHTML =
+                    '<div class="nav-user-menu">' +
+                    '<span class="nav-username">👤 ' + user.name + '</span>' +
+                    '<div class="nav-dropdown">' +
+                    '<a href="Account.html">My Account 👤</a>' +
+                    '<a href="#" onclick="glowLogout();return false;">Logout 👋</a>' +
+                    '</div>' +
+                    '</div>';
+            } else {
+                area.innerHTML = '<a href="Auth.html" class="btn-nav-login">Login 💕</a>';
+            }
+        })();
+        function glowLogout() {
+            localStorage.removeItem('glowup_user');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

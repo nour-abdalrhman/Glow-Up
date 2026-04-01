@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account – Glow Up</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/Auth.css">
+    <style>
+        /* ── Shared Navbar User ── */
+        #navUserArea {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-nav-login {
+            background: linear-gradient(135deg, #f8b4c8, #e8a0b4);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: .82rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: opacity .2s;
+        }
+
+        .btn-nav-login:hover {
+            opacity: .85;
+        }
+
+        .nav-user-menu {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .nav-username {
+            background: linear-gradient(135deg, #f8b4c8, #e8a0b4);
+            color: #fff;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: .82rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+            min-width: 150px;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .nav-user-menu:hover .nav-dropdown {
+            display: block;
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 10px 18px;
+            font-size: .85rem;
+            color: #555;
+            text-decoration: none;
+            transition: background .15s;
+        }
+
+        .nav-dropdown a:hover {
+            background: #fdf0f4;
+            color: #c96b8a;
+        }
+
+        /* Account Page Styles */
+        .account-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .account-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .account-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .account-header p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        .account-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .account-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .account-field label {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .account-field input {
+            padding: 12px 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #333;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+
+        .account-field input:focus {
+            outline: none;
+            border-color: #f8b4c8;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(248, 180, 200, 0.2);
+        }
+
+        .account-field input:disabled {
+            background: #f5f5f5;
+            color: #777;
+        }
+
+        .account-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #f8b4c8, #e8a0b4);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 180, 200, 0.4);
+        }
+
+        .btn-edit {
+            background: transparent;
+            color: #f8b4c8;
+            border: 1px solid #f8b4c8;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-edit:hover {
+            background: #f8b4c8;
+            color: #fff;
+        }
+
+        .account-message {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .account-message.success {
+            background: #e6f7e6;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .account-message.error {
+            background: #ffebee;
+            color: #c62828;
+            display: block;
+        }
+
+        .orders-section {
+            margin-top: 40px;
+        }
+
+        .orders-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .order-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .order-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .order-status.pending {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .order-status.completed {
+            background: #e6f7e6;
+            color: #2e7d32;
+        }
+
+        .order-status.cancelled {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .order-total {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .no-orders {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav id="nav">
+        <a href="index.html" class="nav-logo">Glow Up</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Makeup.html">Makeup</a></li>
+            <li><a href="Skincare.html">Skincare</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="window.location='Cart.html'" style="position:relative">🛒<span
+                    class="cart-dot" id="cartBadge">0</span></button>
+            <div id="navUserArea"></div>
+        </div>
+    </nav>
+
+    <div class="account-container">
+        <div class="account-header">
+            <h2>My Account</h2>
+            <p>Manage your account details and view your orders</p>
+        </div>
+
+        <div class="account-message" id="accountMessage"></div>
+
+        <div class="account-details">
+            <div class="account-field">
+                <label for="userName">Full Name</label>
+                <input type="text" id="userName" disabled>
+            </div>
+
+            <div class="account-field">
+                <label for="userEmail">Email Address</label>
+                <input type="email" id="userEmail" disabled>
+            </div>
+
+            <div class="account-field">
+                <label for="userPassword">Password</label>
+                <input type="password" id="userPassword" value="••••••••" disabled>
+            </div>
+
+            <div class="account-actions">
+                <button class="btn-edit" id="editBtn" onclick="toggleEditMode()">Edit Profile</button>
+                <button class="btn-save" id="saveBtn" onclick="saveProfile()" style="display:none">Save Changes</button>
+            </div>
+        </div>
+
+        <div class="orders-section">
+            <h3 class="orders-header">My Orders</h3>
+            <div id="ordersContainer">
+                <div class="no-orders">Loading your orders...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ── NAV ── */
+        window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 60));
+
+        /* ── ACCOUNT MANAGEMENT ── */
+        let currentUser = null;
+        let isEditMode = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const user = JSON.parse(localStorage.getItem('glowup_user') || 'null');
+            if (!user) {
+                window.location.href = 'Auth.html';
+                return;
+            }
+
+            currentUser = user;
+
+            // Populate account details
+            document.getElementById('userName').value = user.name || '';
+            document.getElementById('userEmail').value = user.email || '';
+
+            // Load user orders
+            loadUserOrders();
+        });
+
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
+            const editBtn = document.getElementById('editBtn');
+            const saveBtn = document.getElementById('saveBtn');
+
+            if (isEditMode) {
+                nameInput.disabled = false;
+                emailInput.disabled = false;
+                editBtn.style.display = 'none';
+                saveBtn.style.display = 'block';
+                nameInput.focus();
+            } else {
+                nameInput.disabled = true;
+                emailInput.disabled = true;
+                editBtn.style.display = 'block';
+                saveBtn.style.display = 'none';
+            }
+        }
+
+        function saveProfile() {
+            const newName = document.getElementById('userName').value.trim();
+            const newEmail = document.getElementById('userEmail').value.trim();
+
+            if (!newName || !newEmail) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            if (!isValidEmail(newEmail)) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Update user data in localStorage
+            currentUser.name = newName;
+            currentUser.email = newEmail;
+            localStorage.setItem('glowup_user', JSON.stringify(currentUser));
+
+            // Show success message
+            showMessage('Profile updated successfully!', 'success');
+
+            // Exit edit mode
+            toggleEditMode();
+
+            // Update navbar with new name
+            updateNavbar();
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showMessage(message, type) {
+            const messageEl = document.getElementById('accountMessage');
+            messageEl.textContent = message;
+            messageEl.className = 'account-message ' + type;
+
+            setTimeout(() => {
+                messageEl.className = 'account-message';
+            }, 5000);
+        }
+
+        function updateNavbar() {
+            const user = JSON.parse(localStorage.getItem('glowup_user') || 'null');
+            const area = document.getElementById('navUserArea');
+
+            if (user && area) {
+                area.innerHTML =
+                    '<div class="nav-user-menu">' +
+                    '<span class="nav-username">👤 ' + user.name + '</span>' +
+                    '<div class="nav-dropdown">' +
+                    '<a href="Account.html">My Account 👤</a>' +
+                    '<a href="#" onclick="glowLogout();return false;">Logout 👋</a>' +
+                    '</div>' +
+                    '</div>';
+            }
+        }
+
+        function glowLogout() {
+            localStorage.removeItem('glowup_user');
+            window.location.href = 'index.html';
+        }
+
+        function loadUserOrders() {
+            const ordersContainer = document.getElementById('ordersContainer');
+
+            // In a real application, you would fetch orders from the server
+            // For now, we'll use a placeholder message
+            ordersContainer.innerHTML = '<div class="no-orders">No orders yet. Start shopping to see your orders here!</div>';
+
+            // If you have a backend endpoint to get orders, you would use:
+            /*
+            fetch('Get my orders.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: currentUser.id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.orders && data.orders.length > 0) {
+                    renderOrders(data.orders);
+                } else {
+                    ordersContainer.innerHTML = '<div class="no-orders">No orders yet. Start shopping to see your orders here!</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching orders:', error);
+                ordersContainer.innerHTML = '<div class="no-orders">Unable to load orders. Please try again later.</div>';
+            });
+            */
+        }
+
+        function renderOrders(orders) {
+            const ordersContainer = document.getElementById('ordersContainer');
+            ordersContainer.innerHTML = '';
+
+            orders.forEach(order => {
+                const statusClass = order.status.toLowerCase();
+                const orderDate = new Date(order.created_at).toLocaleDateString();
+
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = `
+                    <div class="order-header">
+                        <div>
+                            <div class="order-id">Order #${order.id}</div>
+                            <div class="order-date">${orderDate}</div>
+                        </div>
+                        <div>
+                            <span class="order-status ${statusClass}">${order.status}</span>
+                        </div>
+                    </div>
+                    <div class="order-total">Total: EGP ${order.total.toFixed(2)}</div>
+                `;
+
+                ordersContainer.appendChild(orderCard);
+            });
+        }
+    </script>
+
+    <script>
+        /* ── GlowUp: Shared Navbar User State ── */
+        (function () {
+            var user = JSON.parse(localStorage.getItem('glowup_user') || 'null');
+            var area = document.getElementById('navUserArea');
+            if (!area) return;
+            if (user) {
+                area.innerHTML =
+                    '<div class="nav-user-menu">' +
+                    '<span class="nav-username">👤 ' + user.name + '</span>' +
+                    '<div class="nav-dropdown">' +
+                    '<a href="Account.html">My Account 👤</a>' +
+                    '<a href="#" onclick="glowLogout();return false;">Logout 👋</a>' +
+                    '</div>' +
+                    '</div>';
+            } else {
+                area.innerHTML = '<a href="Auth.html" class="btn-nav-login">Login 💕</a>';
+            }
+        })();
+        function glowLogout() {
+            localStorage.removeItem('glowup_user');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
